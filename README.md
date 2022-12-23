@@ -30,6 +30,9 @@ To embed Perses dashboards, panels, and components, use the following steps:
 
 ### Resources
 
+- https://nextjs.org/docs/upgrading
+- https://github.com/vercel/next.js/discussions/27953#discussioncomment-3978605
+- https://beta.nextjs.org/docs/routing/fundamentals#route-segments
 - https://blog.logrocket.com/getting-started-with-mui-and-next-js/
 - https://dev-yakuza.posstree.com/en/react/nextjs/prettier/
 - ...

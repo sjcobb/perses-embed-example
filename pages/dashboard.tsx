@@ -1,5 +1,5 @@
 import styles from '../styles/Home.module.css';
-import { LineChart } from '@perses-dev/components';
+// import { LineChart } from '@perses-dev/components';
 import { Box } from '@mui/material';
 import Switch from '@mui/material/Switch';
 
@@ -149,13 +149,13 @@ export default function Dashboard() {
       <Switch {...label} />
       <Switch {...label} disabled defaultChecked />
       <Box>
-        <LineChart
+        {/* <LineChart
           data={formattedData}
           height={450}
           grid={gridOverrides}
           legend={legendOverrides}
           // dataZoomEnabled={false}
-        />
+        /> */}
       </Box>
     </div>
   );

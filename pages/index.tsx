@@ -32,9 +32,7 @@ export default function About() {
         </video>
       </Link>
 
-      <Link href="/paint">
-        <a className="py-3 block text-center bg-black text-white rounded-md mt-10">Start painting</a>
-      </Link>
+      <Link href="/paint">Start painting</Link>
     </div>
   );
 }

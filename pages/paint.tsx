@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Divider } from '@mui/material';
 import Head from 'next/head';
 import Link from 'next/link';
 import Canvas from '../components/canvas';
@@ -43,7 +44,8 @@ export default function Home() {
       },
       body: JSON.stringify(body),
     });
-    const prediction = await response.json();
+    // TODO: clean up
+    let prediction = await response.json();
 
     if (response.status !== 201) {
       setError(prediction.detail);
@@ -111,20 +113,12 @@ export default function Home() {
                 Start over
               </button>
             )}
-
+            <Divider />
             <Download predictions={predictions} />
-            <Link href="https://replicate.com/stability-ai/stable-diffusion">
-              <a target="_blank" className="lil-button">
-                <RocketIcon className="icon" />
-                Run with an API
-              </a>
-            </Link>
-            <Link href="https://github.com/zeke/inpainter">
-              <a className="lil-button" target="_blank" rel="noopener noreferrer">
-                <CodeIcon className="icon" />
-                View on GitHub
-              </a>
-            </Link>
+            <Divider />
+            <Link href="https://replicate.com/stability-ai/stable-diffusion">Run with an API</Link>
+            <Divider />
+            <Link href="https://github.com/zeke/inpainter">View on GitHub</Link>
           </div>
         </div>
       </main>

@@ -161,17 +161,17 @@ export default function Dashboard() {
       </section>
 
       <section>
-        <ChartsThemeProvider chartsTheme={testChartsTheme}>
+        <p>TODO: fix lodash-es ERR_REQUIRE_ESM issue</p>
+        {/* <ChartsThemeProvider chartsTheme={testChartsTheme}>
           <Box>
             <LineChart
               data={formattedData}
               height={450}
               grid={gridOverrides}
               legend={legendOverrides}
-              // dataZoomEnabled={false}
             />
           </Box>
-        </ChartsThemeProvider>
+        </ChartsThemeProvider> */}
       </section>
     </div>
   );

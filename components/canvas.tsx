@@ -1,3 +1,6 @@
+// https://github.com/replicate/inpainter
+// https://vercel.com/templates/next.js/inpainter-stable-diffusion
+
 import React from 'react';
 import Image from 'next/image';
 import { ReactSketchCanvas } from 'react-sketch-canvas';

@@ -42,6 +42,7 @@ The Perses LineChart.tsx component uses ECharts, but has a custom tooltip for im
 
 - https://blog.logrocket.com/next-js-13-new-app-directory/#page-directory-vs-app-directory
   - `warn - The app directory is experimental. To enable, add 'appDir: true' to your 'next.config.js' configuration under 'experimental'. See https://nextjs.org/docs/messages/experimental-app-dir-config"`
+  - error - Conflicting app and page file was found, please remove the conflicting files to continue: "pages/index.tsx" - "app/page.tsx"
 - https://nextjs.org/docs/upgrading
 - https://github.com/vercel/next.js/discussions/27953#discussioncomment-3978605
 - https://beta.nextjs.org/docs/routing/fundamentals#route-segments

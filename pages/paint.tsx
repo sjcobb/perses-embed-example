@@ -1,13 +1,13 @@
-import { useState } from "react";
-import Head from "next/head";
-import Link from "next/link";
-import Canvas from "../components/canvas";
-import PromptForm from "../components/prompt-form";
-import Dropzone from "../components/dropzone";
-import Download from "../components/download";
-import { XCircle as StartOverIcon } from "lucide-react";
-import { Code as CodeIcon } from "lucide-react";
-import { Rocket as RocketIcon } from "lucide-react";
+import { useState } from 'react';
+import Head from 'next/head';
+import Link from 'next/link';
+import Canvas from '../components/canvas';
+import PromptForm from '../components/prompt-form';
+import Dropzone from '../components/dropzone';
+import Download from '../components/download';
+import { XCircle as StartOverIcon } from 'lucide-react';
+import { Code as CodeIcon } from 'lucide-react';
+import { Rocket as RocketIcon } from 'lucide-react';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -36,10 +36,10 @@ export default function Home() {
       mask: maskImage,
     };
 
-    const response = await fetch("/api/predictions", {
-      method: "POST",
+    const response = await fetch('/api/predictions', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(body),
     });
@@ -51,12 +51,9 @@ export default function Home() {
     }
     setPredictions(predictions.concat([prediction]));
 
-    while (
-      prediction.status !== "succeeded" &&
-      prediction.status !== "failed"
-    ) {
+    while (prediction.status !== 'succeeded' && prediction.status !== 'failed') {
       await sleep(1000);
-      const response = await fetch("/api/predictions/" + prediction.id);
+      const response = await fetch('/api/predictions/' + prediction.id);
       prediction = await response.json();
       if (response.status !== 200) {
         setError(prediction.detail);
@@ -64,7 +61,7 @@ export default function Home() {
       }
       setPredictions(predictions.concat([prediction]));
 
-      if (prediction.status === "succeeded") {
+      if (prediction.status === 'succeeded') {
         setUserUploadedImage(null);
       }
     }
@@ -98,11 +95,7 @@ export default function Home() {
             className="bg-gray-50 relative max-h-[512px] w-full flex items-stretch"
             // style={{ height: 0, paddingBottom: "100%" }}
           >
-            <Canvas
-              predictions={predictions}
-              userUploadedImage={userUploadedImage}
-              onDraw={setMaskImage}
-            />
+            <Canvas predictions={predictions} userUploadedImage={userUploadedImage} onDraw={setMaskImage} />
           </div>
         </div>
 
@@ -110,8 +103,7 @@ export default function Home() {
           <PromptForm onSubmit={handleSubmit} />
 
           <div className="text-center">
-            {((predictions.length > 0 &&
-              predictions[predictions.length - 1].output) ||
+            {((predictions.length > 0 && predictions[predictions.length - 1].output) ||
               maskImage ||
               userUploadedImage) && (
               <button className="lil-button" onClick={startOver}>
@@ -128,11 +120,7 @@ export default function Home() {
               </a>
             </Link>
             <Link href="https://github.com/zeke/inpainter">
-              <a
-                className="lil-button"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
+              <a className="lil-button" target="_blank" rel="noopener noreferrer">
                 <CodeIcon className="icon" />
                 View on GitHub
               </a>

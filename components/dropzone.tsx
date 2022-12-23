@@ -1,5 +1,5 @@
-import React, { useCallback } from "react";
-import { useDropzone } from "react-dropzone";
+import React, { useCallback } from 'react';
+import { useDropzone } from 'react-dropzone';
 
 export default function Dropzone(props) {
   const onImageDropped = props.onImageDropped;
@@ -22,11 +22,7 @@ export default function Dropzone(props) {
     >
       <div className="m-auto">
         <input {...getInputProps()} />
-        {isDragActive ? (
-          <p>Drop the image here ...</p>
-        ) : (
-          <p>Optional: Drag and drop a starting image here</p>
-        )}
+        {isDragActive ? <p>Drop the image here ...</p> : <p>Optional: Drag and drop a starting image here</p>}
       </div>
     </div>
   );

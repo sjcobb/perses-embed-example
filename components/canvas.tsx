@@ -1,7 +1,7 @@
-import React from "react";
-import Image from "next/image";
-import { ReactSketchCanvas } from "react-sketch-canvas";
-import { Spinner } from "./spinner";
+import React from 'react';
+import Image from 'next/image';
+import { ReactSketchCanvas } from 'react-sketch-canvas';
+import { Spinner } from './spinner';
 
 export default class Canvas extends React.Component {
   constructor(props) {
@@ -15,16 +15,14 @@ export default class Canvas extends React.Component {
 
     // only respond if there are paths to draw (don't want to send a blank canvas)
     if (paths.length) {
-      const data = await this.canvas.current.exportImage("svg");
+      const data = await this.canvas.current.exportImage('svg');
       this.props.onDraw(data);
     }
   };
 
   render() {
     const predictions = this.props.predictions.map((prediction) => {
-      prediction.lastImage = prediction.output
-        ? prediction.output[prediction.output.length - 1]
-        : null;
+      prediction.lastImage = prediction.output ? prediction.output[prediction.output.length - 1] : null;
       return prediction;
     });
 
@@ -40,8 +38,8 @@ export default class Canvas extends React.Component {
             .filter((prediction) => prediction.output)
             .map((prediction, index) => (
               <Image
-                alt={"prediction" + index}
-                key={"prediction" + index}
+                alt={'prediction' + index}
+                key={'prediction' + index}
                 layout="fill"
                 className="absolute animate-in fade-in"
                 style={{ zIndex: index }}
@@ -51,11 +49,7 @@ export default class Canvas extends React.Component {
 
         {/* USER UPLOADED IMAGE */}
         {this.props.userUploadedImage && (
-          <Image
-            src={URL.createObjectURL(this.props.userUploadedImage)}
-            alt="preview image"
-            layout="fill"
-          />
+          <Image src={URL.createObjectURL(this.props.userUploadedImage)} alt="preview image" layout="fill" />
         )}
 
         {/* SPINNER */}
@@ -66,28 +60,22 @@ export default class Canvas extends React.Component {
           >
             <div className="p-4 w-40 bg-white text-center rounded-lg animate-in zoom-in">
               <Spinner />
-              <p className="pt-3 opacity-30 text-center text-sm">
-                {lastPrediction.status}
-              </p>
+              <p className="pt-3 opacity-30 text-center text-sm">{lastPrediction.status}</p>
             </div>
           </div>
         )}
 
-        {(predictions.length > 0 || this.props.userUploadedImage) &&
-          !predicting && (
-            <div
-              className="absolute top-0 left-0 w-full h-full"
-              style={{ zIndex: predictions.length + 100 }}
-            >
-              <ReactSketchCanvas
-                ref={this.canvas}
-                strokeWidth={80}
-                strokeColor="black"
-                canvasColor="transparent"
-                onChange={this.onChange}
-              />
-            </div>
-          )}
+        {(predictions.length > 0 || this.props.userUploadedImage) && !predicting && (
+          <div className="absolute top-0 left-0 w-full h-full" style={{ zIndex: predictions.length + 100 }}>
+            <ReactSketchCanvas
+              ref={this.canvas}
+              strokeWidth={80}
+              strokeColor="black"
+              canvasColor="transparent"
+              onChange={this.onChange}
+            />
+          </div>
+        )}
       </div>
     );
   }

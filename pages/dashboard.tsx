@@ -1,39 +1,39 @@
-import styles from "../styles/Home.module.css";
-import { LineChart } from "@perses-dev/components";
-import { Box } from "@mui/material";
-import Switch from "@mui/material/Switch";
+import styles from '../styles/Home.module.css';
+import { LineChart } from '@perses-dev/components';
+import { Box } from '@mui/material';
+import Switch from '@mui/material/Switch';
 
 const mockData = [
   {
     metric: {
-      node: "1234567",
-      environment: "dev",
-      type: "example",
+      node: '1234567',
+      environment: 'dev',
+      type: 'example',
     },
-    __name__: "usage_count",
+    __name__: 'usage_count',
     values: [
-      [1652788230, "1200700"],
-      [1652788245, "2033700"],
-      [1652788260, "1100344"],
-      [1652788290, "1823555"],
-      [1652788305, "2011000"],
-      [1652788410, "990988"],
+      [1652788230, '1200700'],
+      [1652788245, '2033700'],
+      [1652788260, '1100344'],
+      [1652788290, '1823555'],
+      [1652788305, '2011000'],
+      [1652788410, '990988'],
     ],
   },
   {
     metric: {
-      node: "abcdefg",
-      environment: "staging",
-      type: "test",
+      node: 'abcdefg',
+      environment: 'staging',
+      type: 'test',
     },
-    __name__: "test_series",
+    __name__: 'test_series',
     values: [
-      [1652788230, "600900"],
-      [1652788245, "1011100"],
-      [1652788260, "900444"],
-      [1652788290, "823111"],
-      [1652788305, "700001"],
-      [1652788410, "622221"],
+      [1652788230, '600900'],
+      [1652788245, '1011100'],
+      [1652788260, '900444'],
+      [1652788290, '823111'],
+      [1652788305, '700001'],
+      [1652788410, '622221'],
     ],
   },
 ];
@@ -43,7 +43,7 @@ function formatMetrics(queryResult) {
   const xValues = new Set();
   for (const result of queryResult) {
     const yValues = [];
-    if ("values" in result) {
+    if ('values' in result) {
       for (const [x, y] of result.values) {
         xValues.add(Number(x) * 1000);
         yValues.push(Number(y));
@@ -60,13 +60,13 @@ function formatMetrics(queryResult) {
 // https://echarts.apache.org/en/option.html#series-line.type
 function getLineSeries(name, data) {
   return {
-    type: "line",
+    type: 'line',
     name: name,
     data: data,
     color: getRandomColor(name),
     showSymbol: false,
-    symbol: "circle",
-    sampling: "lttb",
+    symbol: 'circle',
+    sampling: 'lttb',
     lineStyle: {
       width: 1,
     },
@@ -85,7 +85,7 @@ function stringifyPrometheusMetricLabels(labels, removeExprWrap) {
     .sort()
     .forEach((labelName) => {
       const labelValue = labels[labelName];
-      if (typeof labelValue === "string") {
+      if (typeof labelValue === 'string') {
         if (removeExprWrap) {
           labelStrings.push(`"${labelName}":"${labelValue}"`);
         } else {
@@ -93,11 +93,11 @@ function stringifyPrometheusMetricLabels(labels, removeExprWrap) {
         }
       }
     });
-  return `{${labelStrings.join(",")}}`;
+  return `{${labelStrings.join(',')}}`;
 }
 
 function getUniqueKeyForPrometheusResult(metricLabels, removeExprWrap) {
-  const metricNameKey = "__name__";
+  const metricNameKey = '__name__';
   if (!!metricLabels) {
     if (metricLabels.hasOwnProperty(metricNameKey)) {
       const stringifiedLabels = stringifyPrometheusMetricLabels(
@@ -115,7 +115,7 @@ function getUniqueKeyForPrometheusResult(metricLabels, removeExprWrap) {
     }
     return stringifyPrometheusMetricLabels(metricLabels, removeExprWrap);
   }
-  return "";
+  return '';
 }
 
 function getRandomColor(identifier) {
@@ -128,17 +128,16 @@ function getRandomColor(identifier) {
   return color;
 }
 
-const label = { inputProps: { "aria-label": "Switch demo" } };
+const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
 export default function Dashboard() {
   const formattedData = formatMetrics(mockData);
-  console.log(formattedData);
   const gridOverrides = {
     top: 60,
     bottom: 50,
   };
   const legendOverrides = {
-    type: "scroll",
+    type: 'scroll',
     bottom: 0,
   };
   return (

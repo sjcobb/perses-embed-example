@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { Download as DownloadIcon } from "lucide-react";
+import Link from 'next/link';
+import { Download as DownloadIcon } from 'lucide-react';
 
 export default function Download(props) {
   if (!props.predictions.length) return null;

@@ -14,6 +14,13 @@ To embed Perses dashboards, panels, and components, use the following steps:
 - install Perses packages
   - npm i @perses-dev/components
 
+## TODO
+
+- [ ] move lato imports out of @perses-dev/components
+  - https://github.com/perses/perses/blob/main/ui/components/src/theme/typography.ts#L14-L17
+- [ ] lodash-es fix issues
+  - Error [ERR_REQUIRE_ESM]: require() of ES Module /Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/lodash-es/lodash.js from /Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/@perses-dev/core/dist/cjs/utils/memo.js not supported.
+
 ## Links
 
 ### Pages
@@ -24,6 +31,8 @@ To embed Perses dashboards, panels, and components, use the following steps:
 ### Resources
 
 - https://blog.logrocket.com/getting-started-with-mui-and-next-js/
+- https://dev-yakuza.posstree.com/en/react/nextjs/prettier/
+- ...
 - https://vercel.com/templates/next.js/inpainter-stable-diffusion
 - https://github.com/pingcap/tidb-prisma-vercel-demo
 

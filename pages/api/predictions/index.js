@@ -5,9 +5,9 @@
 // import { dataUriToBuffer } from "lib/add-background-to-png";
 // import bufferToDataUrl from "buffer-to-data-url";
 
-const PNG = require("pngjs").PNG;
+const PNG = require('pngjs').PNG;
 
-const API_HOST = process.env.REPLICATE_API_HOST || "https://api.replicate.com";
+const API_HOST = process.env.REPLICATE_API_HOST || 'https://api.replicate.com';
 
 function addBackgroundToPNG(dataUrl) {
   const options = {
@@ -29,50 +29,48 @@ function addBackgroundToPNG(dataUrl) {
   // fs.writeFileSync(path.join(__dirname, filename), buffer);
   // console.log(path.join(__dirname, filename));
 
-  return bufferToDataUrl("image/png", buffer);
+  return bufferToDataUrl('image/png', buffer);
 }
 
 function dataUriToBuffer(uri) {
   if (!/^data:/i.test(uri)) {
-    throw new TypeError(
-      '`uri` does not appear to be a Data URI (must begin with "data:")'
-    );
+    throw new TypeError('`uri` does not appear to be a Data URI (must begin with "data:")');
   }
 
   // strip newlines
-  uri = uri.replace(/\r?\n/g, "");
+  uri = uri.replace(/\r?\n/g, '');
 
   // split the URI up into the "metadata" and the "data" portions
-  const firstComma = uri.indexOf(",");
+  const firstComma = uri.indexOf(',');
   if (firstComma === -1 || firstComma <= 4) {
-    throw new TypeError("malformed data: URI");
+    throw new TypeError('malformed data: URI');
   }
 
   // remove the "data:" scheme and parse the metadata
-  const meta = uri.substring(5, firstComma).split(";");
+  const meta = uri.substring(5, firstComma).split(';');
 
-  let charset = "";
+  let charset = '';
   let base64 = false;
-  const type = meta[0] || "text/plain";
+  const type = meta[0] || 'text/plain';
   let typeFull = type;
   for (let i = 1; i < meta.length; i++) {
-    if (meta[i] === "base64") {
+    if (meta[i] === 'base64') {
       base64 = true;
     } else {
       typeFull += `;${meta[i]}`;
-      if (meta[i].indexOf("charset=") === 0) {
+      if (meta[i].indexOf('charset=') === 0) {
         charset = meta[i].substring(8);
       }
     }
   }
   // defaults to US-ASCII only if type is not provided
   if (!meta[0] && !charset.length) {
-    typeFull += ";charset=US-ASCII";
-    charset = "US-ASCII";
+    typeFull += ';charset=US-ASCII';
+    charset = 'US-ASCII';
   }
 
   // get the encoded data portion and decode URI-encoded chars
-  const encoding = base64 ? "base64" : "ascii";
+  const encoding = base64 ? 'base64' : 'ascii';
   const data = unescape(uri.substring(firstComma + 1));
   const buffer = Buffer.from(data, encoding);
 
@@ -84,14 +82,11 @@ function dataUriToBuffer(uri) {
   buffer.charset = charset;
 
   return buffer;
-};
+}
 
 export default async function handler(req, res) {
   // remnove null and undefined values
-  req.body = Object.entries(req.body).reduce(
-    (a, [k, v]) => (v == null ? a : ((a[k] = v), a)),
-    {}
-  );
+  req.body = Object.entries(req.body).reduce((a, [k, v]) => (v == null ? a : ((a[k] = v), a)), {});
 
   if (req.body.mask) {
     req.body.mask = addBackgroundToPNG(req.body.mask);
@@ -100,15 +95,15 @@ export default async function handler(req, res) {
   const body = JSON.stringify({
     // Pinned to a specific version of Stable Diffusion, fetched from:
     // https://replicate.com/stability-ai/stable-diffusion
-    version: "be04660a5b93ef2aff61e3668dedb4cbeb14941e62a3fd5998364a32d613e35e",
+    version: 'be04660a5b93ef2aff61e3668dedb4cbeb14941e62a3fd5998364a32d613e35e',
     input: req.body,
   });
 
   const response = await fetch(`${API_HOST}/v1/predictions`, {
-    method: "POST",
+    method: 'POST',
     headers: {
       Authorization: `Token ${process.env.REPLICATE_API_TOKEN}`,
-      "Content-Type": "application/json",
+      'Content-Type': 'application/json',
     },
     body,
   });

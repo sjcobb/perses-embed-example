@@ -30,6 +30,7 @@ To embed Perses dashboards, panels, and components, use the following steps:
 
 ### Resources
 
+- https://blog.logrocket.com/next-js-13-new-app-directory/#page-directory-vs-app-directory
 - https://nextjs.org/docs/upgrading
 - https://github.com/vercel/next.js/discussions/27953#discussioncomment-3978605
 - https://beta.nextjs.org/docs/routing/fundamentals#route-segments

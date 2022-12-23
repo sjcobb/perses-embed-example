@@ -1,3 +1,4 @@
+/*
 const PNG = require("pngjs").PNG;
 const dataUriToBuffer = require("lib/data-uri-to-buffer");
 import bufferToDataUrl from "buffer-to-data-url";
@@ -30,3 +31,4 @@ module.exports = function addBackgroundToPNG(dataUrl) {
 
   return bufferToDataUrl("image/png", buffer);
 };
+*/

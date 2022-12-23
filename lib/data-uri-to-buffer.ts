@@ -1,3 +1,4 @@
+/*
 module.exports = function dataUriToBuffer(uri) {
   if (!/^data:/i.test(uri)) {
     throw new TypeError(
@@ -51,3 +52,4 @@ module.exports = function dataUriToBuffer(uri) {
 
   return buffer;
 };
+*/

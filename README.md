@@ -2,6 +2,22 @@
 
 https://perses-embed-example.vercel.app/paint
 
+## Getting Started
+
+To embed Perses dashboards, panels, and components, use the following steps:
+
+- install MUI
+  - https://mui.com/material-ui/getting-started/installation/
+    - `npm install @mui/material @emotion/react @emotion/styled`
+    - `npm install @fontsource/roboto`
+- ...
+
+## Links
+
+- https://blog.logrocket.com/getting-started-with-mui-and-next-js/
+- https://vercel.com/templates/next.js/inpainter-stable-diffusion
+- https://github.com/pingcap/tidb-prisma-vercel-demo
+
 # Archive
 
 ## 🎨 Inpainter

@@ -10,9 +10,17 @@ To embed Perses dashboards, panels, and components, use the following steps:
   - https://mui.com/material-ui/getting-started/installation/
     - `npm install @mui/material @emotion/react @emotion/styled`
     - `npm install @fontsource/roboto`
-- ...
+- install Perses packages
+  - npm i @perses-dev/components
 
 ## Links
+
+### Pages
+
+- http://localhost:3000/dashboard
+- http://localhost:3000/paint
+
+### Resources
 
 - https://blog.logrocket.com/getting-started-with-mui-and-next-js/
 - https://vercel.com/templates/next.js/inpainter-stable-diffusion

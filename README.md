@@ -1,4 +1,10 @@
-# 🎨 Inpainter
+# Perses Embed Example Application
+
+https://perses-embed-example.vercel.app/paint
+
+# Archive
+
+## 🎨 Inpainter
 
 A web GUI for inpainting with [Stable Diffusion](https://replicate.com/stability-ai/stable-diffusion) using the Replicate API.
 
@@ -6,7 +12,7 @@ Try it out at [inpainter.vercel.app](https://inpainter.vercel.app/)
 
 https://user-images.githubusercontent.com/2289/188992670-3dc9db47-fb8e-45c1-85ee-afc850009c48.mp4
 
-## How it works
+### How it works
 
 🐢🚀 This is a Node.js app! It's powered by:
 
@@ -17,13 +23,12 @@ https://user-images.githubusercontent.com/2289/188992670-3dc9db47-fb8e-45c1-85ee
 - [Tailwind CSS](https://tailwindcss.com/) for styling
 - [Lucide](https://lucide.dev/) for Icons
 
-## Development
+### Development
 
 Prerequisites:
 
 1. Recent version of Node.js
 2. [Replicate API token](https://replicate.com/account)
-
 
 Set your Replicate API token in your environment:
 

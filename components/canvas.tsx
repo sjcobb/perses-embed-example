@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { ReactSketchCanvas } from "react-sketch-canvas";
-import Spinner from "components/spinner";
+import { Spinner } from "./spinner";
 
 export default class Canvas extends React.Component {
   constructor(props) {

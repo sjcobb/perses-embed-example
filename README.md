@@ -24,7 +24,10 @@ The Perses LineChart.tsx component uses ECharts, but has a custom tooltip for im
 
 - [ ] move lato imports out of @perses-dev/components
   - https://github.com/perses/perses/blob/main/ui/components/src/theme/typography.ts#L14-L17
-- [ ] lodash-es fix issues
+- [ ] lodash-es fix issues with code transpilation from NPM modules using ES6 imports
+  - try using next-transpile-modules: https://github.com/vercel/next.js/issues/706#issuecomment-911559308
+    - https://github.com/vercel/next.js/issues/2259#issuecomment-416150640
+  - issue may be in core package import here: https://github.com/perses/perses/blob/494190b37debf77d56674525f73f6b3c95ca0cf7/ui/core/src/utils/memo.ts#L15
   - should lodash-es be added as a peer dependency in Perses?
   - Error [ERR_REQUIRE_ESM]: require() of ES Module /Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/lodash-es/lodash.js from /Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/@perses-dev/core/dist/cjs/utils/memo.js not supported.
 

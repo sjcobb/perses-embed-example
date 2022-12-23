@@ -13,12 +13,22 @@ To embed Perses dashboards, panels, and components, use the following steps:
     - `npm install @fontsource/lato`
 - install Perses packages
   - npm i @perses-dev/components
+  - Note: CSS errors will be fixed as part of: https://github.com/perses/perses/issues/894
+  - Make lodash-es an explicit dependency instead of a dev dependency
+
+### Custom Charts
+
+The Perses LineChart.tsx component uses ECharts, but has a custom tooltip for improved performance. To use this component, a ChartsThemeProvider must also be used (Or else `Error: No ChartsThemeContext found. Did you forget a Provider?` will be thrown).
 
 ## TODO
 
 - [ ] move lato imports out of @perses-dev/components
   - https://github.com/perses/perses/blob/main/ui/components/src/theme/typography.ts#L14-L17
-- [ ] lodash-es fix issues
+- [ ] lodash-es fix issues with code transpilation from NPM modules using ES6 imports
+  - try using next-transpile-modules: https://github.com/vercel/next.js/issues/706#issuecomment-911559308
+    - https://github.com/vercel/next.js/issues/2259#issuecomment-416150640
+  - issue may be in core package import here: https://github.com/perses/perses/blob/494190b37debf77d56674525f73f6b3c95ca0cf7/ui/core/src/utils/memo.ts#L15
+  - should lodash-es be added as a peer dependency in Perses?
   - Error [ERR_REQUIRE_ESM]: require() of ES Module /Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/lodash-es/lodash.js from /Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/@perses-dev/core/dist/cjs/utils/memo.js not supported.
 
 ## Links
@@ -30,6 +40,12 @@ To embed Perses dashboards, panels, and components, use the following steps:
 
 ### Resources
 
+- https://blog.logrocket.com/next-js-13-new-app-directory/#page-directory-vs-app-directory
+  - `warn - The app directory is experimental. To enable, add 'appDir: true' to your 'next.config.js' configuration under 'experimental'. See https://nextjs.org/docs/messages/experimental-app-dir-config"`
+  - error - Conflicting app and page file was found, please remove the conflicting files to continue: "pages/index.tsx" - "app/page.tsx"
+- https://nextjs.org/docs/upgrading
+- https://github.com/vercel/next.js/discussions/27953#discussioncomment-3978605
+- https://beta.nextjs.org/docs/routing/fundamentals#route-segments
 - https://blog.logrocket.com/getting-started-with-mui-and-next-js/
 - https://dev-yakuza.posstree.com/en/react/nextjs/prettier/
 - ...

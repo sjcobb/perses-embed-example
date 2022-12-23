@@ -12,10 +12,14 @@ export default function Download(props) {
 
   return (
     <Link href={lastImage}>
-      <a className="lil-button" target="_blank" rel="noopener noreferrer">
-        <DownloadIcon className="icon" />
-        Download
-      </a>
+      <DownloadIcon className="icon" />
+      Download
     </Link>
+    //  href={lastImage}>
+    //   <a className="lil-button" target="_blank" rel="noopener noreferrer">
+    //     <DownloadIcon className="icon" />
+    //     Download
+    //   </a>
+    // </Link>
   );
 }

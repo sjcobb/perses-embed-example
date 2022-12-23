@@ -1,5 +1,5 @@
 import styles from '../styles/Home.module.css';
-import { LineChart } from '@perses-dev/components';
+import { ChartsThemeProvider, LineChart, PersesChartsTheme } from '@perses-dev/components';
 import { Box } from '@mui/material';
 import Switch from '@mui/material/Switch';
 
@@ -130,6 +130,15 @@ function getRandomColor(identifier) {
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
+const testChartsTheme: PersesChartsTheme = {
+  echartsTheme: {},
+  noDataOption: {},
+  sparkline: {
+    width: 1,
+    color: '#000000',
+  },
+};
+
 export default function Dashboard() {
   const formattedData = formatMetrics(mockData);
   const gridOverrides = {
@@ -142,21 +151,28 @@ export default function Dashboard() {
   };
   return (
     <div className={styles.container}>
-      <div>
+      <section>
         <span>With default Theme:</span>
-      </div>
-      <Switch {...label} defaultChecked />
-      <Switch {...label} />
-      <Switch {...label} disabled defaultChecked />
-      <Box>
-        <LineChart
-          data={formattedData}
-          height={450}
-          grid={gridOverrides}
-          legend={legendOverrides}
-          // dataZoomEnabled={false}
-        />
-      </Box>
+      </section>
+      <section>
+        <Switch {...label} defaultChecked />
+        <Switch {...label} />
+        <Switch {...label} disabled defaultChecked />
+      </section>
+
+      <section>
+        <p>TODO: fix lodash-es ERR_REQUIRE_ESM issue</p>
+        {/* <ChartsThemeProvider chartsTheme={testChartsTheme}>
+          <Box>
+            <LineChart
+              data={formattedData}
+              height={450}
+              grid={gridOverrides}
+              legend={legendOverrides}
+            />
+          </Box>
+        </ChartsThemeProvider> */}
+      </section>
     </div>
   );
 }

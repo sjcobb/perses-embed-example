@@ -14,6 +14,7 @@ To embed Perses dashboards, panels, and components, use the following steps:
 - install Perses packages
   - npm i @perses-dev/components
   - Note: CSS errors will be fixed as part of: https://github.com/perses/perses/issues/894
+  - Make lodash-es an explicit dependency instead of a dev dependency
 
 ### Custom Charts
 
@@ -37,6 +38,7 @@ The Perses LineChart.tsx component uses ECharts, but has a custom tooltip for im
 ### Resources
 
 - https://blog.logrocket.com/next-js-13-new-app-directory/#page-directory-vs-app-directory
+  - `warn - The app directory is experimental. To enable, add 'appDir: true' to your 'next.config.js' configuration under 'experimental'. See https://nextjs.org/docs/messages/experimental-app-dir-config"`
 - https://nextjs.org/docs/upgrading
 - https://github.com/vercel/next.js/discussions/27953#discussioncomment-3978605
 - https://beta.nextjs.org/docs/routing/fundamentals#route-segments

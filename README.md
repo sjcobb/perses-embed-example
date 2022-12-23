@@ -13,12 +13,18 @@ To embed Perses dashboards, panels, and components, use the following steps:
     - `npm install @fontsource/lato`
 - install Perses packages
   - npm i @perses-dev/components
+  - Note: CSS errors will be fixed as part of: https://github.com/perses/perses/issues/894
+
+### Custom Charts
+
+The Perses LineChart.tsx component uses ECharts, but has a custom tooltip for improved performance. To use this component, a ChartsThemeProvider must also be used (Or else `Error: No ChartsThemeContext found. Did you forget a Provider?` will be thrown).
 
 ## TODO
 
 - [ ] move lato imports out of @perses-dev/components
   - https://github.com/perses/perses/blob/main/ui/components/src/theme/typography.ts#L14-L17
 - [ ] lodash-es fix issues
+  - should lodash-es be added as a peer dependency in Perses?
   - Error [ERR_REQUIRE_ESM]: require() of ES Module /Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/lodash-es/lodash.js from /Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/@perses-dev/core/dist/cjs/utils/memo.js not supported.
 
 ## Links

@@ -1,0 +1,54 @@
+## ERRORS
+
+- error - Error [ERR_REQUIRE_ESM]: require() of ES Module /Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/lodash-es/lodash.js from /Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/@perses-dev/core/dist/cjs/utils/memo.js not supported.
+
+- Instead change the require of lodash.js in /Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/@perses-dev/core/dist/cjs/utils/memo.js to a dynamic import() which is available in all CommonJS modules.
+
+## LOGS
+
+sjcobb@Stevens-MacBook-Pro perses-embed-example % npm run dev
+
+> inpainter@0.1.0 dev
+> next dev
+
+ready - started server on 0.0.0.0:3000, url: http://localhost:3000
+info  - Loaded env from /Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/.env.local
+info  - SWC minify release candidate enabled. https://nextjs.link/swcmin
+event - compiled client and server successfully in 1249 ms (207 modules)
+wait  - compiling...
+event - compiled client and server successfully in 63 ms (207 modules)
+wait  - compiling /_error (client and server)...
+event - compiled client and server successfully in 132 ms (208 modules)
+warn  - Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/basic-features/fast-refresh#how-it-works
+wait  - compiling /dashboard (client and server)...
+(node:65698) [DEP_WEBPACK_MODULE_ISSUER] DeprecationWarning: Module.issuer: Use new ModuleGraph API
+(Use `node --trace-deprecation ...` to show where the warning was created)
+error - ./node_modules/@fontsource/lato/300.css
+Global CSS cannot be imported from within node_modules.
+Read more: https://nextjs.org/docs/messages/css-npm
+Location: node_modules/@perses-dev/components/dist/theme/typography.js
+error - Error [ERR_REQUIRE_ESM]: require() of ES Module /Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/lodash-es/lodash.js from /Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/@perses-dev/core/dist/cjs/utils/memo.js not supported.
+Instead change the require of lodash.js in /Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/@perses-dev/core/dist/cjs/utils/memo.js to a dynamic import() which is available in all CommonJS modules.
+    at Object.<anonymous> (/Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/@perses-dev/core/dist/cjs/utils/memo.js:28:19)
+    at Object.<anonymous> (/Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/@perses-dev/core/dist/cjs/utils/index.js:19:13)
+    at Object.<anonymous> (/Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/@perses-dev/core/dist/cjs/index.js:18:13)
+    at Object.<anonymous> (/Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/@perses-dev/components/dist/cjs/DateTimeRangePicker/DateTimeRangePicker.js:24:15)
+    at Object.<anonymous> (/Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/@perses-dev/components/dist/cjs/DateTimeRangePicker/index.js:17:13)
+    at Object.<anonymous> (/Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/@perses-dev/components/dist/cjs/index.js:17:13)
+    at Object.@perses-dev/components (/Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/.next/server/pages/dashboard.js:65:18)
+    at __webpack_require__ (/Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/.next/server/webpack-runtime.js:33:42)
+    at eval (webpack-internal:///./pages/dashboard.tsx:9:80)
+    at Object../pages/dashboard.tsx (/Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/.next/server/pages/dashboard.js:32:1)
+    at __webpack_require__ (/Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/.next/server/webpack-runtime.js:33:42)
+    at __webpack_exec__ (/Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/.next/server/pages/dashboard.js:86:39)
+    at /Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/.next/server/pages/dashboard.js:87:28
+    at Object.<anonymous> (/Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/.next/server/pages/dashboard.js:90:3)
+    at Object.requirePage (/Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/next/dist/server/require.js:58:12)
+    at /Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/next/dist/server/load-components.js:56:50
+    at runMicrotasks (<anonymous>)
+    at async Promise.all (index 2)
+    at async Object.loadComponents (/Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/next/dist/server/load-components.js:53:49)
+    at async DevServer.findPageComponents (/Users/sjcobb/Desktop/Data/sjcobb/perses-embed-example/node_modules/next/dist/server/next-server.js:451:36) {
+  code: 'ERR_REQUIRE_ESM',
+  page: '/dashboard'
+}

@@ -9,7 +9,8 @@ To embed Perses dashboards, panels, and components, use the following steps:
 - install MUI
   - https://mui.com/material-ui/getting-started/installation/
     - `npm install @mui/material @emotion/react @emotion/styled`
-    - `npm install @fontsource/roboto`
+    - ~~`npm install @fontsource/roboto`~~
+    - `npm install @fontsource/lato`
 - install Perses packages
   - npm i @perses-dev/components
 

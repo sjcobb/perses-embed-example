@@ -2,6 +2,7 @@
 // https://vercel.com/templates/next.js/inpainter-stable-diffusion
 
 import React, { useRef } from 'react';
+import { Box } from '@mui/material';
 import Image from 'next/image';
 import { ReactSketchCanvas, ReactSketchCanvasRef } from 'react-sketch-canvas';
 import { Spinner } from './spinner';
@@ -40,7 +41,8 @@ export function Canvas(props: CanvasProps) {
   const lastPrediction = predictions[predictions.length - 1];
 
   return (
-    <div className="relative w-full aspect-square">
+    // <div className="relative w-full aspect-square">
+    <Box sx={{ display: 'flex', position: 'relative', width: '100%', maxHeight: '512px', margin: '0 auto' }}>
       {/* PREDICTION IMAGES */}
       {!props.userUploadedImage &&
         predictions
@@ -88,6 +90,6 @@ export function Canvas(props: CanvasProps) {
           />
         </div>
       )}
-    </div>
+    </Box>
   );
 }

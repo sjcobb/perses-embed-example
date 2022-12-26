@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 
 const samplePrompts = [
   'a gentleman otter in a 19th century portrait',
@@ -19,7 +19,8 @@ export default function PromptForm(props) {
 
   return (
     <form onSubmit={props.onSubmit} className="py-5 animate-in fade-in duration-700">
-      <div className="flex max-w-[512px]">
+      {/* <div className="flex max-w-[512px]"> */}
+      <Box sx={{ display: 'flex', maxWidth: '512px' }}>
         <input
           type="text"
           defaultValue={prompt}
@@ -32,7 +33,7 @@ export default function PromptForm(props) {
         <Button type="submit" variant="outlined">
           Generate
         </Button>
-      </div>
+      </Box>
     </form>
   );
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Button, Divider, Stack } from '@mui/material';
+import { Box, Button, Divider, Grid, Stack } from '@mui/material';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Canvas } from '../components/canvas';
@@ -78,32 +78,35 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <Box sx={{ width: '1200' }}>
       <Head>
         <title>Inpainting with Stable Diffusion &amp; Replicate</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <main className="container mx-auto p-5">
+      {/* <main className="container mx-auto p-5"> */}
+      <Grid container spacing={2}>
         {error && <div>{error}</div>}
 
-        <div className="border-hairline max-w-[512px] mx-auto relative">
-          <Dropzone
-            onImageDropped={setUserUploadedImage}
-            predictions={predictions}
-            userUploadedImage={userUploadedImage}
-          />
-          <div
-            className="bg-gray-50 relative max-h-[512px] w-full flex items-stretch"
-            // style={{ height: 0, paddingBottom: "100%" }}
-          >
-            <Canvas predictions={predictions} userUploadedImage={userUploadedImage} onDraw={setMaskImage} />
+        <Grid item xs={12}>
+          <div className="border-hairline max-w-[512px] mx-auto relative">
+            <Dropzone
+              onImageDropped={setUserUploadedImage}
+              predictions={predictions}
+              userUploadedImage={userUploadedImage}
+            />
+            <div
+              className="bg-gray-50 relative max-h-[512px] w-full flex items-stretch"
+              // style={{ height: 0, paddingBottom: "100%" }}
+            >
+              <Canvas predictions={predictions} userUploadedImage={userUploadedImage} onDraw={setMaskImage} />
+            </div>
           </div>
-        </div>
+        </Grid>
 
-        <div className="max-w-[512px] mx-auto">
+        {/* <div className="max-w-[512px] mx-auto"> */}
+        <Grid item xs={12}>
           <PromptForm onSubmit={handleSubmit} />
-
           <div className="text-center">
             {((predictions.length > 0 && predictions[predictions.length - 1].output) ||
               maskImage ||
@@ -129,9 +132,9 @@ export default function Home() {
               </Button>
             </Stack>
           </div>
-        </div>
-      </main>
-    </div>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 

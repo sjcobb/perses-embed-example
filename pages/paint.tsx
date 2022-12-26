@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Divider } from '@mui/material';
 import Head from 'next/head';
 import Link from 'next/link';
-import Canvas from '../components/canvas';
+import { Canvas } from '../components/canvas';
 import PromptForm from '../components/prompt-form';
 import Dropzone from '../components/dropzone';
 import Download from '../components/download';

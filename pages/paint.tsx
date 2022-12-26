@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Divider } from '@mui/material';
+import { Button, Divider, Stack } from '@mui/material';
 import Head from 'next/head';
 import Link from 'next/link';
 import { Canvas } from '../components/canvas';
@@ -7,8 +7,8 @@ import PromptForm from '../components/prompt-form';
 import Dropzone from '../components/dropzone';
 import Download from '../components/download';
 import { XCircle as StartOverIcon } from 'lucide-react';
-import { Code as CodeIcon } from 'lucide-react';
-import { Rocket as RocketIcon } from 'lucide-react';
+// import { Code as CodeIcon } from 'lucide-react';
+// import { Rocket as RocketIcon } from 'lucide-react';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -108,17 +108,26 @@ export default function Home() {
             {((predictions.length > 0 && predictions[predictions.length - 1].output) ||
               maskImage ||
               userUploadedImage) && (
-              <button className="lil-button" onClick={startOver}>
+              <Button onClick={startOver}>
                 <StartOverIcon className="icon" />
                 Start over
-              </button>
+              </Button>
             )}
-            <Divider />
-            <Download predictions={predictions} />
-            <Divider />
-            <Link href="https://replicate.com/stability-ai/stable-diffusion">Run with an API</Link>
-            <Divider />
-            <Link href="https://github.com/zeke/inpainter">View on GitHub</Link>
+            <Stack direction="row" spacing={1}>
+              {predictions.length > 0 && (
+                <Button variant="outlined">
+                  <Download predictions={predictions} />
+                </Button>
+              )}
+              <Divider />
+              <Button variant="outlined">
+                <Link href="https://replicate.com/stability-ai/stable-diffusion">Run with an API</Link>
+              </Button>
+              <Divider />
+              <Button variant="outlined">
+                <Link href="https://github.com/zeke/inpainter">View on GitHub</Link>
+              </Button>
+            </Stack>
           </div>
         </div>
       </main>

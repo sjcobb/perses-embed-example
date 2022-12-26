@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Button } from '@mui/material';
 
 const samplePrompts = [
   'a gentleman otter in a 19th century portrait',
@@ -27,9 +28,10 @@ export default function PromptForm(props) {
           className="block w-full flex-grow rounded-l-md"
         />
 
-        <button className="bg-black text-white rounded-r-md text-small inline-block px-3 flex-none" type="submit">
+        {/* <button className="bg-black text-white rounded-r-md text-small inline-block px-3 flex-none" type="submit"> */}
+        <Button type="submit" variant="outlined">
           Generate
-        </button>
+        </Button>
       </div>
     </form>
   );

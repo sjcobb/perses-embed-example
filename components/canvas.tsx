@@ -7,19 +7,15 @@ import { ReactSketchCanvas, ReactSketchCanvasRef } from 'react-sketch-canvas';
 import { Spinner } from './spinner';
 
 interface CanvasProps {
-  // height?: number;
   predictions: any;
   userUploadedImage: any;
   onDraw: any;
 }
 
-// export function Canvas({ height }: CanvasProps) {
 export function Canvas(props: CanvasProps) {
   // const { predictions, userUploadedImage, onDraw } = props;
 
   const canvasRef = useRef<ReactSketchCanvasRef>();
-  // const canvasRef = useRef<HTMLCanvasElement>();
-  // const canvasRef = React.createRef();
 
   const onChange = async () => {
     if (canvasRef.current === undefined) {
@@ -46,7 +42,6 @@ export function Canvas(props: CanvasProps) {
   return (
     <div className="relative w-full aspect-square">
       {/* PREDICTION IMAGES */}
-
       {!props.userUploadedImage &&
         predictions
           .filter((prediction) => prediction.output)
@@ -55,8 +50,11 @@ export function Canvas(props: CanvasProps) {
               alt={'prediction' + index}
               key={'prediction' + index}
               layout="fill"
-              className="absolute animate-in fade-in"
-              style={{ zIndex: index }}
+              // className="absolute animate-in fade-in"
+              style={{
+                position: 'absolute',
+                zIndex: index,
+              }}
               src={prediction.lastImage}
             />
           ))}

@@ -65,15 +65,14 @@ export function Panel({ height }: PanelProps) {
     bottom: 0,
   };
   return (
-    // <ChartsThemeProvider chartsTheme={testChartsTheme}>
-    //   <Box sx={{ width: '600px' }}>
-    //     <h2>Panel Test</h2>
-    //     <LineChart data={formattedData} height={400} grid={gridOverrides} legend={legendOverrides} />
-    //   </Box>
-    // </ChartsThemeProvider>
-
-    <Box sx={{ width: '600px' }}>
-      <h2>Panel Test Alt</h2>
-    </Box>
+    <ChartsThemeProvider chartsTheme={testChartsTheme}>
+      <Box sx={{ width: '600px' }}>
+        <h2>Panel Test</h2>
+        <LineChart data={formattedData} height={400} grid={gridOverrides} legend={legendOverrides} />
+      </Box>
+    </ChartsThemeProvider>
+    // <Box sx={{ width: '600px' }}>
+    //   <h2>Panel Test Alt</h2>
+    // </Box>
   );
 }

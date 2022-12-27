@@ -11,10 +11,8 @@ import { Box } from '@mui/material';
 import { Panel } from '../components/Panel';
 import { useDatasourceApi } from '../components/dashboards/datasource-api';
 import styles from '../styles/Home.module.css';
-import { PersesDashboardProviders } from '../components/dashboards/PersesDashboardProviders';
-// import { PersesDashboard } from '../components/dashboards/PersesDashboard';
-
-console.log(Panel);
+// import { PersesDashboardProviders } from '../components/dashboards/PersesDashboardProviders';
+// // import { PersesDashboard } from '../components/dashboards/PersesDashboard';
 
 export const dashboard: DashboardResource = {
   kind: 'Dashboard',
@@ -64,27 +62,31 @@ export const dashboard: DashboardResource = {
   },
 };
 
-async function getViewDashboard() {
-  // const persesDashboardsPackage = (await import('@perses-dev/dashboards')).default;
-  const persesDashboardsPackage = await import('@perses-dev/dashboards');
-  console.log('persesDashboardsPackage: ', persesDashboardsPackage);
-  return persesDashboardsPackage.ViewDashboard;
-}
+// async function getViewDashboard() {
+//   const persesDashboardsPackage = await import('@perses-dev/dashboards');
+//   return persesDashboardsPackage.ViewDashboard;
+// }
 
 export default function Dashboard() {
   // const [dashboardView, setDashboardView] = useState<any>();
-  // console.log('useState -> dashboardView: ', dashboardView);
 
   const datasourceApi = useDatasourceApi();
 
   // getViewDashboard().then((result) => {
-  //   console.log('result: ', result);
+  //   console.log(result);
   //   setDashboardView({ component: result });
   // });
   // if (dashboardView === undefined) {
   //   return <p>loading</p>;
   // }
   // const ViewDashboard = dashboardView.component;
+
+  // // if (window === undefined) {
+  // // if (typeof window === undefined) {
+  // if (typeof window !== 'object') {
+  //   // return <p>loading</p>;
+  // }
+  // // // window.addEventListener('scroll', onScroll);
 
   const props = {
     dashboardResource: dashboard,
@@ -95,9 +97,12 @@ export default function Dashboard() {
 
   return (
     <>
-      <PersesDashboardProviders dashboard={dashboard}>
+      {/* <DynamicDashboard dashboard={dashboard}>
         <ViewDashboard {...props} />
-      </PersesDashboardProviders>
+      </DynamicDashboard> */}
+      {/* <PersesDashboardProviders dashboard={dashboard}>
+        <ViewDashboard {...props} />
+      </PersesDashboardProviders> */}
       {/* <PersesDashboard>
         <ViewDashboard {...props} />
       </PersesDashboard> */}

@@ -22,6 +22,8 @@ The Perses LineChart.tsx component uses ECharts, but has a custom tooltip for im
 
 ## TODO
 
+- [ ] ViewDashboard props - make possible to disable query params
+  - Uncaught ReferenceError: window is not defined
 - [ ] echarts/core.js import errors
   - explanation: https://github.com/hustcc/echarts-for-react/issues/425#issuecomment-854122398
 - [x] move lato imports out of @perses-dev/components

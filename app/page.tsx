@@ -1,3 +1,4 @@
+// TODO: setup experimental app directory in next.config.js
 // https://blog.logrocket.com/next-js-13-new-app-directory/#page-directory-vs-app-directory
 // https://github.com/mukhammadxuja/nextjs-13-ts-tailwind-starter/blob/main/app/page.tsx
 // import { ThemeProvider } from 'next-themes';

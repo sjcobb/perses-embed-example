@@ -90,7 +90,7 @@ export default function Home() {
           <Box
             sx={{
               // display: 'flex',
-              // alignItems: 'stretch', // https://tailwindcss.com/docs/align-items
+              // alignItems: 'stretch',
               position: 'relative',
               maxWidth: '512px',
               width: '100%',
@@ -111,7 +111,7 @@ export default function Home() {
             <Box
               sx={{
                 display: 'flex',
-                alignItems: 'stretch', // https://tailwindcss.com/docs/align-items
+                alignItems: 'stretch',
                 position: 'relative',
                 maxHeight: '512px',
                 width: '100%',

@@ -28,10 +28,14 @@ export default function Dropzone(props) {
       }}
       {...getRootProps()}
     >
-      <div className="m-auto">
+      <Box
+        sx={{
+          margin: '0 auto',
+        }}
+      >
         <input {...getInputProps()} />
         {isDragActive ? <p>Drop the image here ...</p> : <p>Optional: Drag and drop a starting image here</p>}
-      </div>
+      </Box>
     </Box>
   );
 }

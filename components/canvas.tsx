@@ -62,9 +62,9 @@ export function Canvas(props: CanvasProps) {
               alt={'prediction' + index}
               key={'prediction' + index}
               layout="fill"
-              // className="absolute animate-in fade-in"
               style={{
                 position: 'absolute',
+                margin: '0 auto',
                 zIndex: index,
               }}
               src={prediction.lastImage}
@@ -78,19 +78,40 @@ export function Canvas(props: CanvasProps) {
 
       {/* SPINNER */}
       {predicting && (
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        // <div
+        //   className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+        //   style={{ zIndex: predictions.length + 100 }}
+        // >
+        <Box
           style={{ zIndex: predictions.length + 100 }}
+          sx={{
+            margin: '0 auto',
+            width: '100%',
+          }}
         >
-          <div className="p-4 w-40 bg-white text-center rounded-lg animate-in zoom-in">
+          {/* <div className="p-4 w-40 bg-white text-center rounded-lg animate-in zoom-in"> */}
+          <Box
+            sx={{
+              width: '100%',
+              margin: '0 auto',
+              textAlign: 'center',
+            }}
+          >
             <Spinner />
-            <p className="pt-3 opacity-30 text-center text-sm">{lastPrediction.status}</p>
-          </div>
-        </div>
+            <p>{lastPrediction.status}</p>
+          </Box>
+        </Box>
       )}
 
       {(predictions.length > 0 || props.userUploadedImage) && !predicting && (
-        <div className="absolute top-0 left-0 w-full h-full" style={{ zIndex: predictions.length + 100 }}>
+        // <div className="absolute top-0 left-0 w-full h-full" style={{ zIndex: predictions.length + 100 }}>
+        <Box
+          style={{ zIndex: predictions.length + 100 }}
+          sx={{
+            margin: '0 auto',
+            width: '100%',
+          }}
+        >
           <ReactSketchCanvas
             ref={canvasRef}
             strokeWidth={80}
@@ -98,7 +119,7 @@ export function Canvas(props: CanvasProps) {
             canvasColor="transparent"
             onChange={onChange}
           />
-        </div>
+        </Box>
       )}
     </Box>
   );

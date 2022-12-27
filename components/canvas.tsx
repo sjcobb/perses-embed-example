@@ -27,7 +27,8 @@ export function Canvas(props: CanvasProps) {
 
     // only respond if there are paths to draw (don't want to send a blank canvas)
     if (paths.length) {
-      const data = await canvasRef.current.exportImage('svg');
+      // const data = await canvasRef.current.exportImage('svg'); // ERR: Type error: Argument of type '"svg"' is not assignable to parameter of type 'ExportImageType'.
+      const data = await canvasRef.current.exportImage('png');
       props.onDraw(data);
     }
   };

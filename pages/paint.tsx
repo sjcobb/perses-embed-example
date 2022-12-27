@@ -96,12 +96,12 @@ export default function Home() {
               userUploadedImage={userUploadedImage}
             />
             {/* TODO: fix layout and convert divs to Box's */}
-            <div
+            {/* <div
               className="bg-gray-50 relative max-h-[512px] w-full flex items-stretch"
               // style={{ height: 0, paddingBottom: "100%" }}
-            >
+            > */}
             <Box
-              // sx={{}}
+            // sx={{}}
             >
               <Canvas predictions={predictions} userUploadedImage={userUploadedImage} onDraw={setMaskImage} />
             </Box>

@@ -12,7 +12,7 @@ import { Panel } from '../components/Panel';
 import { useDatasourceApi } from '../components/dashboards/datasource-api';
 import styles from '../styles/Home.module.css';
 // import { PersesDashboardProviders } from '../components/dashboards/PersesDashboardProviders';
-// // import { PersesDashboard } from '../components/dashboards/PersesDashboard';
+import { PersesDashboard } from '../components/dashboards/PersesDashboard';
 
 export const dashboard: DashboardResource = {
   kind: 'Dashboard',
@@ -93,6 +93,7 @@ export default function Dashboard() {
     datasourceApi: datasourceApi,
     isReadonly: true,
     initialVariableIsSticky: true,
+    enabledURLParams: false,
   };
 
   return (
@@ -103,9 +104,9 @@ export default function Dashboard() {
       {/* <PersesDashboardProviders dashboard={dashboard}>
         <ViewDashboard {...props} />
       </PersesDashboardProviders> */}
-      {/* <PersesDashboard>
+      <PersesDashboard>
         <ViewDashboard {...props} />
-      </PersesDashboard> */}
+      </PersesDashboard>
       <Box className={styles.container}>
         <section>
           <Panel height={500} />

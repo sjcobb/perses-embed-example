@@ -1,6 +1,7 @@
 import React from 'react';
 import { QueryParamProvider } from 'use-query-params';
-import { WindowHistoryAdapter } from 'use-query-params/adapters/window';
+// import { WindowHistoryAdapter } from 'use-query-params/adapters/window';
+import { NextAdapter } from 'next-query-params';
 import { PluginRegistry } from '@perses-dev/plugin-system';
 import { bundledPluginLoader } from './PersesPluginRegistry';
 
@@ -17,7 +18,7 @@ export function PersesDashboard({ children }: PersesDashboardProps) {
         Panel: 'TimeSeriesChart',
       }}
     >
-      <QueryParamProvider adapter={WindowHistoryAdapter}>{children}</QueryParamProvider>
+      <QueryParamProvider adapter={NextAdapter}>{children}</QueryParamProvider>
     </PluginRegistry>
   );
 }

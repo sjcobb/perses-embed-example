@@ -1,7 +1,8 @@
 import React from 'react';
 import { QueryParamProvider } from 'use-query-params';
 // import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6';
-import { WindowHistoryAdapter } from 'use-query-params/adapters/window';
+// import { WindowHistoryAdapter } from 'use-query-params/adapters/window';
+import { NextAdapter } from 'next-query-params';
 import { DashboardResource, DurationString, TimeRangeValue } from '@perses-dev/core';
 import { DashboardProvider, DatasourceStoreProvider, TemplateVariableProvider } from '@perses-dev/dashboards';
 import {
@@ -44,7 +45,8 @@ export function PersesDashboardProviders({ dashboard, children }: PersesDashboar
       }}
     >
       {/* <QueryParamProvider adapter={ReactRouter6Adapter}> */}
-      <QueryParamProvider adapter={WindowHistoryAdapter}>
+      {/* <QueryParamProvider adapter={WindowHistoryAdapter}> */}
+      <QueryParamProvider adapter={NextAdapter}>
         <DatasourceStoreProvider dashboardResource={dashboard} datasourceApi={datasourceApi}>
           <DashboardProvider initialState={{ dashboardResource: dashboard }}>
             {/* <TemplateVariableProvider initialVariableDefinitions={dashboard.spec.variables}> */}

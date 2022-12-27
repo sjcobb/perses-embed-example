@@ -22,9 +22,11 @@ The Perses LineChart.tsx component uses ECharts, but has a custom tooltip for im
 
 ## TODO
 
-- [ ] move lato imports out of @perses-dev/components
+- [ ] echarts/core.js import errors
+  - explanation: https://github.com/hustcc/echarts-for-react/issues/425#issuecomment-854122398
+- [x] move lato imports out of @perses-dev/components
   - https://github.com/perses/perses/blob/main/ui/components/src/theme/typography.ts#L14-L17
-- [ ] lodash-es fix issues with code transpilation from NPM modules using ES6 imports
+- [x] lodash-es fix issues with code transpilation from NPM modules using ES6 imports
   - try using next-transpile-modules: https://github.com/vercel/next.js/issues/706#issuecomment-911559308
     - https://github.com/vercel/next.js/issues/2259#issuecomment-416150640
   - issue may be in core package import here: https://github.com/perses/perses/blob/494190b37debf77d56674525f73f6b3c95ca0cf7/ui/core/src/utils/memo.ts#L15
@@ -40,6 +42,7 @@ The Perses LineChart.tsx component uses ECharts, but has a custom tooltip for im
 
 ### Resources
 
+- https://nextjs.org/blog/next-12#es-modules-support-and-url-imports
 - https://strikingloo.github.io/stable-diffusion-vs-dalle-2#prompt-examples-and-experiments
 - https://blog.logrocket.com/next-js-13-new-app-directory/#page-directory-vs-app-directory
   - `warn - The app directory is experimental. To enable, add 'appDir: true' to your 'next.config.js' configuration under 'experimental'. See https://nextjs.org/docs/messages/experimental-app-dir-config"`

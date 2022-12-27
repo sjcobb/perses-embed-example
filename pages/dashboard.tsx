@@ -1,17 +1,7 @@
-// // import dynamic from 'next/dynamic';
-// // const DynamicViewDashboard = dynamic(
-// //   // () => import('@/components/EchartsLineChart'),
-// //   // () => return ( import { ViewDashboard } from '@perses-dev/dashboards'),
-// //   { ssr: false },
-// // )
-// import { useState } from 'react';
 import { ViewDashboard } from '@perses-dev/dashboards';
 import { DashboardResource } from '@perses-dev/core';
 import { Box } from '@mui/material';
-import { Panel } from '../components/Panel';
 import { useDatasourceApi } from '../components/dashboards/datasource-api';
-import styles from '../styles/Home.module.css';
-// import { PersesDashboardProviders } from '../components/dashboards/PersesDashboardProviders';
 import { PersesDashboard } from '../components/dashboards/PersesDashboard';
 
 export const dashboard: DashboardResource = {
@@ -62,63 +52,19 @@ export const dashboard: DashboardResource = {
   },
 };
 
-// async function getViewDashboard() {
-//   const persesDashboardsPackage = await import('@perses-dev/dashboards');
-//   return persesDashboardsPackage.ViewDashboard;
-// }
-
 export default function Dashboard() {
-  // const [dashboardView, setDashboardView] = useState<any>();
-
   const datasourceApi = useDatasourceApi();
-
-  // getViewDashboard().then((result) => {
-  //   console.log(result);
-  //   setDashboardView({ component: result });
-  // });
-  // if (dashboardView === undefined) {
-  //   return <p>loading</p>;
-  // }
-  // const ViewDashboard = dashboardView.component;
-
-  // // if (window === undefined) {
-  // // if (typeof window === undefined) {
-  // if (typeof window !== 'object') {
-  //   // return <p>loading</p>;
-  // }
-  // // // window.addEventListener('scroll', onScroll);
-
-  const props = {
-    dashboardResource: dashboard,
-    datasourceApi: datasourceApi,
-    isReadonly: true,
-    initialVariableIsSticky: true,
-    enabledURLParams: false,
-  };
-
   return (
-    <>
-      {/* <DynamicDashboard dashboard={dashboard}>
-        <ViewDashboard {...props} />
-      </DynamicDashboard> */}
-      {/* <PersesDashboardProviders dashboard={dashboard}>
-        <ViewDashboard {...props} />
-      </PersesDashboardProviders> */}
+    <Box>
       <PersesDashboard>
-        <ViewDashboard {...props} />
+        <ViewDashboard
+          dashboardResource={dashboard}
+          datasourceApi={datasourceApi}
+          isReadonly={true}
+          initialVariableIsSticky={true}
+          // enabledURLParams={false}
+        />
       </PersesDashboard>
-      <Box className={styles.container}>
-        <section>
-          <Panel height={500} />
-        </section>
-      </Box>
-      {/* <ViewDashboard {...props} /> */}
-      {/* <ViewDashboard
-        dashboardResource={dashboard}
-        datasourceApi={datasourceApi}
-        isReadonly={true}
-        initialVariableIsSticky={true}
-      /> */}
-    </>
+    </Box>
   );
 }

@@ -28,6 +28,8 @@ The Perses LineChart.tsx component uses ECharts, but has a custom tooltip for im
   - https://github.com/amannn/next-query-params
 - [ ] echarts/core.js import errors
   - explanation: https://github.com/hustcc/echarts-for-react/issues/425#issuecomment-854122398
+- [ ] echarts useLayoutEffect error
+  - https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85
 - [x] move lato imports out of @perses-dev/components
   - https://github.com/perses/perses/blob/main/ui/components/src/theme/typography.ts#L14-L17
 - [x] lodash-es fix issues with code transpilation from NPM modules using ES6 imports

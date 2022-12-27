@@ -1,6 +1,6 @@
 import React from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { QueryParamProvider } from 'use-query-params';
-// import { WindowHistoryAdapter } from 'use-query-params/adapters/window';
 import { NextAdapter } from 'next-query-params';
 import { PluginRegistry } from '@perses-dev/plugin-system';
 import { bundledPluginLoader } from './PersesPluginRegistry';
@@ -11,6 +11,14 @@ type PersesDashboardProps = {
 };
 
 export function PersesDashboard({ children }: PersesDashboardProps) {
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        retry: 0,
+      },
+    },
+  });
   return (
     <PluginRegistry
       pluginLoader={bundledPluginLoader}
@@ -18,7 +26,9 @@ export function PersesDashboard({ children }: PersesDashboardProps) {
         Panel: 'TimeSeriesChart',
       }}
     >
-      <QueryParamProvider adapter={NextAdapter}>{children}</QueryParamProvider>
+      <QueryClientProvider client={queryClient}>
+        <QueryParamProvider adapter={NextAdapter}>{children}</QueryParamProvider>
+      </QueryClientProvider>
     </PluginRegistry>
   );
 }

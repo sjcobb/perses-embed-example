@@ -45,7 +45,7 @@ const mockData = [
   },
 ];
 
-const testChartsTheme: PersesChartsTheme = {
+const CHARTS_THEME: PersesChartsTheme = {
   echartsTheme: {},
   noDataOption: {},
   sparkline: {
@@ -65,14 +65,11 @@ export function Panel({ height }: PanelProps) {
     bottom: 0,
   };
   return (
-    <ChartsThemeProvider chartsTheme={testChartsTheme}>
+    <ChartsThemeProvider chartsTheme={CHARTS_THEME}>
       <Box sx={{ width: '600px' }}>
         <h2>Panel Test</h2>
         <LineChart data={formattedData} height={400} grid={gridOverrides} legend={legendOverrides} />
       </Box>
     </ChartsThemeProvider>
-    // <Box sx={{ width: '600px' }}>
-    //   <h2>Panel Test Alt</h2>
-    // </Box>
   );
 }

@@ -1,7 +1,5 @@
 import React from 'react';
 import { QueryParamProvider } from 'use-query-params';
-// import { ReactRouter6Adapter } from 'use-query-params/adapters/react-router-6';
-// import { WindowHistoryAdapter } from 'use-query-params/adapters/window';
 import { NextAdapter } from 'next-query-params';
 import { DashboardResource, DurationString, TimeRangeValue } from '@perses-dev/core';
 import { DashboardProvider, DatasourceStoreProvider, TemplateVariableProvider } from '@perses-dev/dashboards';
@@ -20,8 +18,8 @@ function TimeRangeProvider({
   dashboardDuration: DurationString;
   children: React.ReactNode;
 }) {
-  // const initialTimeRange = useInitialTimeRange(dashboardDuration);
-  const initialTimeRange: TimeRangeValue = { pastDuration: '1h' };
+  const initialTimeRange: TimeRangeValue = useInitialTimeRange(dashboardDuration);
+  // const initialTimeRange: TimeRangeValue = { pastDuration: '1h' };
   return (
     <PersesTimeRangeProvider initialTimeRange={initialTimeRange} enabledURLParams={false}>
       {children}
@@ -44,14 +42,12 @@ export function PersesDashboardProviders({ dashboard, children }: PersesDashboar
         Panel: 'TimeSeriesChart',
       }}
     >
-      {/* <QueryParamProvider adapter={ReactRouter6Adapter}> */}
-      {/* <QueryParamProvider adapter={WindowHistoryAdapter}> */}
       <QueryParamProvider adapter={NextAdapter}>
         <DatasourceStoreProvider dashboardResource={dashboard} datasourceApi={datasourceApi}>
           <DashboardProvider initialState={{ dashboardResource: dashboard }}>
-            {/* <TemplateVariableProvider initialVariableDefinitions={dashboard.spec.variables}> */}
-            <TimeRangeProvider dashboardDuration={dashboard.spec.duration}>{children}</TimeRangeProvider>
-            {/* </TemplateVariableProvider> */}
+            <TemplateVariableProvider initialVariableDefinitions={dashboard.spec.variables}>
+              <TimeRangeProvider dashboardDuration={dashboard.spec.duration}>{children}</TimeRangeProvider>
+            </TemplateVariableProvider>
           </DashboardProvider>
         </DatasourceStoreProvider>
       </QueryParamProvider>

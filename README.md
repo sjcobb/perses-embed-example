@@ -22,6 +22,11 @@ The Perses LineChart.tsx component uses ECharts, but has a custom tooltip for im
 
 ## TODO
 
+- [ ] dynamic render Perses dashboard to avoid Server mismatch errors
+  - `next-dev.js?3515:20 Warning: Prop id did not match. Server: "Panel-10-header-title" Client: "Panel-0-header-title"`
+  - https://github.com/vercel/next.js/issues/12863#issuecomment-628660240
+- [ ] fix Fetch API errors in TimeSeriesChart
+  - fetch.js?efea:16 Fetch API cannot load demo.do.prometheus.io:9100/api/v1/query_range. URL scheme "demo.do.prometheus.io" is not supported.
 - [ ] ViewDashboard props - make possible to disable query params
   - Uncaught ReferenceError: window is not defined
   - https://github.com/pbeshai/use-query-params/issues/13

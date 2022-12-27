@@ -35,6 +35,7 @@ export const dashboard: DashboardResource = {
       {
         kind: 'Grid',
         spec: {
+          display: { title: 'Row 1', collapse: { open: true } },
           items: [
             {
               x: 0,

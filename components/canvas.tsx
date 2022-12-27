@@ -43,7 +43,16 @@ export function Canvas(props: CanvasProps) {
 
   return (
     // <div className="relative w-full aspect-square">
-    <Box sx={{ display: 'flex', position: 'relative', width: '100%', maxHeight: '512px', margin: '0 auto' }}>
+    <Box
+      sx={{
+        display: 'flex',
+        position: 'relative',
+        width: '100%',
+        maxHeight: '512px',
+        margin: '0 auto',
+        aspectRatio: '1 / 1',
+      }}
+    >
       {/* PREDICTION IMAGES */}
       {!props.userUploadedImage &&
         predictions

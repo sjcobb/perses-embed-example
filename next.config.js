@@ -8,10 +8,10 @@ const nextConfig = {
   },
   reactStrictMode: false,
   // reactStrictMode: true,
-  // swcMinify: true,
-  // images: {
-  //   domains: ['replicate.com', 'replicate.delivery'],
-  // },
+  swcMinify: true,
+  images: {
+    domains: ['replicate.com', 'replicate.delivery'],
+  },
   transpilePackages: ['echarts', 'zrender'],
   // // transpilePackages: ['lodash-es'], // https://nextjs.org/blog/next-13-1#built-in-module-transpilation-stable
   // // // transpileModules: ['lodash-es'],

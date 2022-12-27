@@ -20,7 +20,14 @@ export default function PromptForm(props) {
   return (
     <form onSubmit={props.onSubmit} className="py-5 animate-in fade-in duration-700">
       {/* <div className="flex max-w-[512px]"> */}
-      <Box sx={{ display: 'flex', maxWidth: '512px' }}>
+      {/* <Box sx={{ display: 'flex', maxWidth: '512px' }}> */}
+      <Box
+        sx={{
+          display: 'flex',
+          maxWidth: '512px',
+          margin: '0 auto',
+        }}
+      >
         <input
           type="text"
           defaultValue={prompt}

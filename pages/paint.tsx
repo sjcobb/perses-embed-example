@@ -78,7 +78,7 @@ export default function Home() {
   };
 
   return (
-    <Box sx={{ width: '1200' }}>
+    <Box sx={{ width: '1200px' }}>
       <Head>
         <title>Inpainting with Stable Diffusion &amp; Replicate</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
@@ -87,9 +87,18 @@ export default function Home() {
       {/* <main className="container mx-auto p-5"> */}
       <Grid container spacing={2}>
         {error && <div>{error}</div>}
-
-        <Grid item xs={12}>
-          <div className="border-hairline max-w-[512px] mx-auto relative">
+        <Grid item xs={24}>
+          <Box
+            sx={{
+              // display: 'flex',
+              // alignItems: 'stretch', // https://tailwindcss.com/docs/align-items
+              position: 'relative',
+              maxWidth: '512px',
+              width: '100%',
+              margin: '0 auto',
+              backgroundColor: 'silver',
+            }}
+          >
             <Dropzone
               onImageDropped={setUserUploadedImage}
               predictions={predictions}
@@ -101,17 +110,35 @@ export default function Home() {
               // style={{ height: 0, paddingBottom: "100%" }}
             > */}
             <Box
-            // sx={{}}
+              sx={{
+                display: 'flex',
+                alignItems: 'stretch', // https://tailwindcss.com/docs/align-items
+                position: 'relative',
+                maxHeight: '512px',
+                width: '100%',
+                margin: '0 auto',
+              }}
             >
               <Canvas predictions={predictions} userUploadedImage={userUploadedImage} onDraw={setMaskImage} />
             </Box>
-          </div>
-        </Grid>
-
-        {/* <div className="max-w-[512px] mx-auto"> */}
-        <Grid item xs={12}>
+          </Box>
           <PromptForm onSubmit={handleSubmit} />
-          <div className="text-center">
+        </Grid>
+        <Grid
+          item
+          xs={24}
+          sx={{
+            textAlign: 'center',
+          }}
+        >
+          <Box
+            sx={{
+              display: 'inline-block',
+              minWidth: '512px',
+              margin: '0 auto',
+              textAlign: 'center',
+            }}
+          >
             {((predictions.length > 0 && predictions[predictions.length - 1].output) ||
               maskImage ||
               userUploadedImage) && (
@@ -135,7 +162,7 @@ export default function Home() {
                 <Link href="https://github.com/zeke/inpainter">View on GitHub</Link>
               </Button>
             </Stack>
-          </div>
+          </Box>
         </Grid>
       </Grid>
     </Box>

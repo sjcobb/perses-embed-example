@@ -6,7 +6,7 @@ const samplePrompts = [
   'bowl of ramen in the style of a comic book',
   'flower field drawn by Jean-Jacques Sempé',
   'illustration of a taxi cab in the style of r crumb',
-  'multicolor hyperspace',
+  // 'multicolor hyperspace',
   'painting of fruit on a table in the style of Raimonds Staprans',
   'pencil sketch of robots playing poker',
   'photo of an astronaut riding a horse',

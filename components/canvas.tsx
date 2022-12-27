@@ -93,7 +93,7 @@ export function Canvas(props: CanvasProps) {
           <Box
             sx={{
               width: '100%',
-              margin: '0 auto',
+              margin: '10px auto 0 auto',
               textAlign: 'center',
             }}
           >

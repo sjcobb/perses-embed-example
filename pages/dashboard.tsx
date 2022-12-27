@@ -1,11 +1,7 @@
 import styles from '../styles/Home.module.css';
 import Switch from '@mui/material/Switch';
 import { Panel } from '../components/Panel';
-// // //
-// import { ChartsThemeProvider, LineChart, PersesChartsTheme } from '@perses-dev/components';
-// import { Box } from '@mui/material';
-// import dynamic from 'next/dynamic';
-// const DynamicComponentWithNoSSR = dynamic(() => import('package'), { ssr: false });
+// import DynamicPanel from '../components/DynamicPanel';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
@@ -23,6 +19,7 @@ export default function Dashboard() {
 
       <section>
         <Panel height={500} />
+        {/* <DynamicPanel /> */}
       </section>
     </div>
   );

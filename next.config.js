@@ -3,6 +3,10 @@
  */
 
 const nextConfig = {
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  reactStrictMode: false,
   // reactStrictMode: true,
   // swcMinify: true,
   // images: {

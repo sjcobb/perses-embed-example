@@ -154,11 +154,11 @@ export function Panel({ height }: PanelProps) {
     bottom: 0,
   };
   return (
-    // <ChartsThemeProvider chartsTheme={testChartsTheme}>
-    <Box>
-      <h2>Panel Test</h2>
-      {/* <LineChart data={formattedData} height={450} grid={gridOverrides} legend={legendOverrides} /> */}
-    </Box>
-    // </ChartsThemeProvider>
+    <ChartsThemeProvider chartsTheme={testChartsTheme}>
+      <Box sx={{ width: '600px' }}>
+        <h2>Panel Test</h2>
+        <LineChart data={formattedData} height={400} grid={gridOverrides} legend={legendOverrides} />
+      </Box>
+    </ChartsThemeProvider>
   );
 }

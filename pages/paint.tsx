@@ -84,7 +84,6 @@ export default function Home() {
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      {/* <main className="container mx-auto p-5"> */}
       <Grid container spacing={2}>
         {error && <div>{error}</div>}
         <Grid item xs={24}>

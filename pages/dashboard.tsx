@@ -62,7 +62,7 @@ export default function Dashboard() {
           dashboardResource={dashboard}
           datasourceApi={datasourceApi}
           isReadonly={true}
-          initialVariableIsSticky={true}
+          initialVariableIsSticky={false}
           // enabledURLParams={false}
         />
       </PersesDashboard>

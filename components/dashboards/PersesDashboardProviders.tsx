@@ -1,12 +1,9 @@
 import React from 'react';
 import { QueryParamProvider } from 'use-query-params';
-import { ReactRouter5Adapter } from 'use-query-params/adapters/react-router-5';
+// import { ReactRouter5Adapter } from 'use-query-params/adapters/react-router-5';
+import { WindowHistoryAdapter } from 'use-query-params/adapters/window';
 import { DashboardResource, DurationString } from '@perses-dev/core';
-import {
-  DashboardProvider,
-  DatasourceStoreProvider,
-  TemplateVariableProvider,
-} from '@perses-dev/dashboards';
+import { DashboardProvider, DatasourceStoreProvider, TemplateVariableProvider } from '@perses-dev/dashboards';
 import {
   PluginRegistry,
   TimeRangeProvider as PersesTimeRangeProvider,
@@ -24,10 +21,7 @@ function TimeRangeProvider({
 }) {
   const initialTimeRange = useInitialTimeRange(dashboardDuration);
   return (
-    <PersesTimeRangeProvider
-      initialTimeRange={initialTimeRange}
-      enabledURLParams={true}
-    >
+    <PersesTimeRangeProvider initialTimeRange={initialTimeRange} enabledURLParams={true}>
       {children}
     </PersesTimeRangeProvider>
   );
@@ -38,10 +32,7 @@ type PersesDashboardProvidersProps = {
   children: React.ReactNode;
 };
 
-export function PersesDashboardProviders({
-  dashboard,
-  children,
-}: PersesDashboardProvidersProps) {
+export function PersesDashboardProviders({ dashboard, children }: PersesDashboardProvidersProps) {
   const datasourceApi = useDatasourceApi();
 
   return (
@@ -51,18 +42,11 @@ export function PersesDashboardProviders({
         Panel: 'TimeSeriesChart',
       }}
     >
-      <QueryParamProvider adapter={ReactRouter5Adapter}>
-        <DatasourceStoreProvider
-          dashboardResource={dashboard}
-          datasourceApi={datasourceApi}
-        >
+      <QueryParamProvider adapter={WindowHistoryAdapter}>
+        <DatasourceStoreProvider dashboardResource={dashboard} datasourceApi={datasourceApi}>
           <DashboardProvider initialState={{ dashboardResource: dashboard }}>
-            <TemplateVariableProvider
-              initialVariableDefinitions={dashboard.spec.variables}
-            >
-              <TimeRangeProvider dashboardDuration={dashboard.spec.duration}>
-                {children}
-              </TimeRangeProvider>
+            <TemplateVariableProvider initialVariableDefinitions={dashboard.spec.variables}>
+              <TimeRangeProvider dashboardDuration={dashboard.spec.duration}>{children}</TimeRangeProvider>
             </TemplateVariableProvider>
           </DashboardProvider>
         </DatasourceStoreProvider>

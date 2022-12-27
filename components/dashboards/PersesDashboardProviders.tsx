@@ -2,7 +2,7 @@ import React from 'react';
 import { QueryParamProvider } from 'use-query-params';
 // import { ReactRouter5Adapter } from 'use-query-params/adapters/react-router-5';
 import { WindowHistoryAdapter } from 'use-query-params/adapters/window';
-import { DashboardResource, DurationString } from '@perses-dev/core';
+import { DashboardResource, DurationString, TimeRangeValue } from '@perses-dev/core';
 import { DashboardProvider, DatasourceStoreProvider, TemplateVariableProvider } from '@perses-dev/dashboards';
 import {
   PluginRegistry,
@@ -19,9 +19,10 @@ function TimeRangeProvider({
   dashboardDuration: DurationString;
   children: React.ReactNode;
 }) {
-  const initialTimeRange = useInitialTimeRange(dashboardDuration);
+  // const initialTimeRange = useInitialTimeRange(dashboardDuration);
+  const initialTimeRange: TimeRangeValue = { pastDuration: '1h' };
   return (
-    <PersesTimeRangeProvider initialTimeRange={initialTimeRange} enabledURLParams={true}>
+    <PersesTimeRangeProvider initialTimeRange={initialTimeRange} enabledURLParams={false}>
       {children}
     </PersesTimeRangeProvider>
   );
@@ -42,12 +43,13 @@ export function PersesDashboardProviders({ dashboard, children }: PersesDashboar
         Panel: 'TimeSeriesChart',
       }}
     >
-      <QueryParamProvider adapter={WindowHistoryAdapter}>
+      {/* <QueryParamProvider adapter={WindowHistoryAdapter}> */}
+      <QueryParamProvider adapter={undefined}>
         <DatasourceStoreProvider dashboardResource={dashboard} datasourceApi={datasourceApi}>
           <DashboardProvider initialState={{ dashboardResource: dashboard }}>
-            <TemplateVariableProvider initialVariableDefinitions={dashboard.spec.variables}>
-              <TimeRangeProvider dashboardDuration={dashboard.spec.duration}>{children}</TimeRangeProvider>
-            </TemplateVariableProvider>
+            {/* <TemplateVariableProvider initialVariableDefinitions={dashboard.spec.variables}> */}
+            <TimeRangeProvider dashboardDuration={dashboard.spec.duration}>{children}</TimeRangeProvider>
+            {/* </TemplateVariableProvider> */}
           </DashboardProvider>
         </DatasourceStoreProvider>
       </QueryParamProvider>

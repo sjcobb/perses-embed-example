@@ -11,8 +11,8 @@ import { Box } from '@mui/material';
 import { Panel } from '../components/Panel';
 import { useDatasourceApi } from '../components/dashboards/datasource-api';
 import styles from '../styles/Home.module.css';
-// import { PersesDashboardProviders } from '../components/dashboards/PersesDashboardProviders';
-import { PersesDashboard } from '../components/dashboards/PersesDashboard';
+import { PersesDashboardProviders } from '../components/dashboards/PersesDashboardProviders';
+// import { PersesDashboard } from '../components/dashboards/PersesDashboard';
 
 console.log(Panel);
 
@@ -95,9 +95,9 @@ export default function Dashboard() {
 
   return (
     <>
-      {/* <PersesDashboardProviders dashboard={dashboard}>
+      <PersesDashboardProviders dashboard={dashboard}>
         <ViewDashboard {...props} />
-      </PersesDashboardProviders> */}
+      </PersesDashboardProviders>
       {/* <PersesDashboard>
         <ViewDashboard {...props} />
       </PersesDashboard> */}

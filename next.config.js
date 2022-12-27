@@ -15,20 +15,36 @@ const nextConfig = {
   images: {
     domains: ['replicate.com', 'replicate.delivery'],
   },
-  transpilePackages: ['echarts', 'zrender'],
+  experimental: {
+    // transpilePackages: [
+    //   '@perses-dev/dashboards',
+    //   'echarts',
+    //   'zrender',
+    // ],
+    appDir: false,
+  },
+  transpilePackages: [
+    '@perses-dev/components',
+    '@perses-dev/core',
+    '@perses-dev/dashboards',
+    '@perses-dev/panels-plugin',
+    '@perses-dev/plugin-system',
+    '@perses-dev/prometheus-plugin',
+    'echarts',
+    'zrender',
+  ],
   // // transpilePackages: ['lodash-es'], // https://nextjs.org/blog/next-13-1#built-in-module-transpilation-stable
   // // // transpileModules: ['lodash-es'],
-  // experimental: {
-  //   appDir: false,
-  // },
 };
 
-// // https://stackoverflow.com/a/65939797/17575201
-// const withTM = require("next-transpile-modules")(["mojave/classes"]);
+module.exports = nextConfig;
 
-// const withTM = require('next-transpile-modules')(['lodash-es']); // pass the modules you would like to see transpiled
-const withTM = require('next-transpile-modules')(['echarts', 'zrender']); // pass the modules you would like to see transpiled
-module.exports = withTM(nextConfig);
+// // // https://stackoverflow.com/a/65939797/17575201
+// // const withTM = require("next-transpile-modules")(["mojave/classes"]);
+
+// // const withTM = require('next-transpile-modules')(['lodash-es']); // pass the modules you would like to see transpiled
+// const withTM = require('next-transpile-modules')(['echarts', 'zrender']); // pass the modules you would like to see transpiled
+// module.exports = withTM(nextConfig);
 
 // const nextConfig = {
 //   reactStrictMode: true,

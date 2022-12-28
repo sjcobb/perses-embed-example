@@ -1,6 +1,6 @@
 # Perses Embed Example Application
 
-Demo of [Perses](github.com/perses/perses) embed functionality. See pages:
+Demo of [Perses](https://github.com/perses/perses) embedded dashboard and components functionality. See pages:
 
 - https://perses-embed-example.vercel.app/dashboard
 - https://perses-embed-example.vercel.app/paint
@@ -22,6 +22,8 @@ To embed Perses dashboards, panels, and components, use the following steps:
 - register custom plugins
 
 ## Components Demo
+
+See available components in @perses-dev/components [README](https://github.com/perses/perses/blob/main/ui/components/README.md)
 
 ### Custom Charts
 

@@ -43,7 +43,7 @@ const datasource: GlobalDatasource = {
     plugin: {
       kind: 'PrometheusDatasource',
       spec: {
-        direct_url: 'demo.do.prometheus.io:9100',
+        direct_url: 'demo.do.prometheus.io:9100', // TODO: fix datasource, proxyUrl errors when using TimeSeriesChart panel
       },
     },
   },

@@ -2,13 +2,11 @@ import { useState } from 'react';
 import { Box, Button, Divider, Grid, Stack } from '@mui/material';
 import Head from 'next/head';
 import Link from 'next/link';
-import { Canvas } from '../components/canvas';
-import PromptForm from '../components/prompt-form';
-import Dropzone from '../components/dropzone';
-import Download from '../components/download';
+import { Canvas } from '../components/Canvas';
+import PromptForm from '../components/PromptForm';
+import Dropzone from '../components/Dropzone';
+import Download from '../components/Download';
 import { XCircle as StartOverIcon } from 'lucide-react';
-// import { Code as CodeIcon } from 'lucide-react';
-// import { Rocket as RocketIcon } from 'lucide-react';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -89,8 +87,6 @@ export default function Home() {
         <Grid item xs={24}>
           <Box
             sx={{
-              // display: 'flex',
-              // alignItems: 'stretch',
               position: 'relative',
               maxWidth: '512px',
               width: '100%',
@@ -103,11 +99,6 @@ export default function Home() {
               predictions={predictions}
               userUploadedImage={userUploadedImage}
             />
-            {/* TODO: fix layout and convert divs to Box's */}
-            {/* <div
-              className="bg-gray-50 relative max-h-[512px] w-full flex items-stretch"
-              // style={{ height: 0, paddingBottom: "100%" }}
-            > */}
             <Box
               sx={{
                 display: 'flex',

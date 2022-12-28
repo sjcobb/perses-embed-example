@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Box, Button, Divider, Grid, Stack } from '@mui/material';
 import Link from 'next/link';
-import { Canvas } from '../../../canvas';
-import PromptForm from '../../../prompt-form';
-import Dropzone from '../../../dropzone';
-import Download from '../../../download';
+import { Canvas } from '../../../Canvas';
+import PromptForm from '../../../PromptForm';
+import Dropzone from '../../../Dropzone';
+import Download from '../../../Download';
 import { XCircle as StartOverIcon } from 'lucide-react';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));

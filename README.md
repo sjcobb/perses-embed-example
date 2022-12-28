@@ -22,6 +22,7 @@ The Perses LineChart.tsx component uses ECharts, but has a custom tooltip for im
 
 ## TODO
 
+- [ ] fix panel edit drawer for custom canvas panel
 - [ ] dynamic render Perses dashboard to avoid Server mismatch errors
   - `next-dev.js?3515:20 Warning: Prop id did not match. Server: "Panel-10-header-title" Client: "Panel-0-header-title"`
   - https://github.com/vercel/next.js/issues/12863#issuecomment-628660240

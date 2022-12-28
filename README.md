@@ -1,41 +1,32 @@
-# 🎨 Inpainter
+# Perses Embed Example Application
 
-A web GUI for inpainting with [Stable Diffusion](https://replicate.com/stability-ai/stable-diffusion) using the Replicate API.
+Demo of [Perses](https://github.com/perses/perses) embedded dashboard and components functionality. See pages:
 
-Try it out at [inpainter.vercel.app](https://inpainter.vercel.app/)
+- https://perses-embed-example.vercel.app/dashboard
+- https://perses-embed-example.vercel.app/paint
 
-https://user-images.githubusercontent.com/2289/188992670-3dc9db47-fb8e-45c1-85ee-afc850009c48.mp4
+Includes a custom panel plugin for inpainting with [Stable Diffusion](https://replicate.com/stability-ai/stable-diffusion) using the Replicate API ([see template](https://github.com/replicate/inpainter)).
 
-## How it works
+## Getting Started
 
-🐢🚀 This is a Node.js app! It's powered by:
+To embed Perses dashboards, panels, and components, use the following steps:
 
-- [Replicate](https://replicate.com/), a platform for running machine learning models in the cloud.
-- [Stable Diffusion](https://replicate.com/stability-ai/stable-diffusion), an open-source text-to-image generation model.
-- Next.js [server-side API routes](pages/api) for talking to the Replicate API
-- Next.js React components for the inpainting GUI
-- [Tailwind CSS](https://tailwindcss.com/) for styling
-- [Lucide](https://lucide.dev/) for Icons
+- install @mui/material, @fontsource/lato
+  - https://mui.com/material-ui/getting-started/installation/
+- install Perses packages
+  - npm i @perses-dev/components @perses-dev/core @perses-dev/dashboards @perses-dev/panels-plugin @perses-dev/plugin-system @perses-dev/prometheus-plugin
+  - Note: CSS errors will be fixed as part of: https://github.com/perses/perses/issues/894
+  - see next.config.js `transpilePackages` to fix lodash-es, echarts ES module errors
+- add Perses Providers: ChartsThemeProvider, QueryClientProvider, QueryParamProvider, PluginRegistry
+- customize MUI theme
+- register custom plugins
 
-## Development
+## Components Demo
 
-Prerequisites:
+See available components in @perses-dev/components [README](https://github.com/perses/perses/blob/main/ui/components/README.md)
 
-1. Recent version of Node.js
-2. [Replicate API token](https://replicate.com/account)
+### Custom Charts
 
+See demo page for custom chart component examples: https://perses-embed-example.vercel.app/demo
 
-Set your Replicate API token in your environment:
-
-```
-REPLICATE_API_TOKEN=<your-token-here>
-```
-
-Then install dependencies and run the server:
-
-```sh
-npm install
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000)
+Note: The Perses LineChart.tsx component uses ECharts, but has a custom tooltip for improved performance. To use this component, a ChartsThemeProvider must also be used (Or else `Error: No ChartsThemeContext found. Did you forget a Provider?` will be thrown).

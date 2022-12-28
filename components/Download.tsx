@@ -1,5 +1,5 @@
-import Link from "next/link";
-import { Download as DownloadIcon } from "lucide-react";
+import Link from 'next/link';
+import { Download as DownloadIcon } from 'lucide-react';
 
 export default function Download(props) {
   if (!props.predictions.length) return null;
@@ -12,10 +12,8 @@ export default function Download(props) {
 
   return (
     <Link href={lastImage}>
-      <a className="lil-button" target="_blank" rel="noopener noreferrer">
-        <DownloadIcon className="icon" />
-        Download
-      </a>
+      <DownloadIcon className="icon" />
+      Download
     </Link>
   );
 }

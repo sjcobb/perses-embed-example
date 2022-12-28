@@ -1,14 +1,14 @@
 import { useState } from 'react';
-import { Divider } from '@mui/material';
+import { Box, Button, Divider, Grid, Stack } from '@mui/material';
 import Head from 'next/head';
 import Link from 'next/link';
-import Canvas from '../components/canvas';
+import { Canvas } from '../components/canvas';
 import PromptForm from '../components/prompt-form';
 import Dropzone from '../components/dropzone';
 import Download from '../components/download';
 import { XCircle as StartOverIcon } from 'lucide-react';
-import { Code as CodeIcon } from 'lucide-react';
-import { Rocket as RocketIcon } from 'lucide-react';
+// import { Code as CodeIcon } from 'lucide-react';
+// import { Rocket as RocketIcon } from 'lucide-react';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
@@ -78,51 +78,93 @@ export default function Home() {
   };
 
   return (
-    <div>
+    <Box sx={{ width: '1200px' }}>
       <Head>
         <title>Inpainting with Stable Diffusion &amp; Replicate</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
 
-      <main className="container mx-auto p-5">
+      <Grid container spacing={2}>
         {error && <div>{error}</div>}
-
-        <div className="border-hairline max-w-[512px] mx-auto relative">
-          <Dropzone
-            onImageDropped={setUserUploadedImage}
-            predictions={predictions}
-            userUploadedImage={userUploadedImage}
-          />
-          <div
-            className="bg-gray-50 relative max-h-[512px] w-full flex items-stretch"
-            // style={{ height: 0, paddingBottom: "100%" }}
+        <Grid item xs={24}>
+          <Box
+            sx={{
+              // display: 'flex',
+              // alignItems: 'stretch',
+              position: 'relative',
+              maxWidth: '512px',
+              width: '100%',
+              margin: '0 auto',
+              backgroundColor: 'silver',
+            }}
           >
-            <Canvas predictions={predictions} userUploadedImage={userUploadedImage} onDraw={setMaskImage} />
-          </div>
-        </div>
-
-        <div className="max-w-[512px] mx-auto">
+            <Dropzone
+              onImageDropped={setUserUploadedImage}
+              predictions={predictions}
+              userUploadedImage={userUploadedImage}
+            />
+            {/* TODO: fix layout and convert divs to Box's */}
+            {/* <div
+              className="bg-gray-50 relative max-h-[512px] w-full flex items-stretch"
+              // style={{ height: 0, paddingBottom: "100%" }}
+            > */}
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'stretch',
+                position: 'relative',
+                maxHeight: '512px',
+                width: '100%',
+                margin: '0 auto',
+              }}
+            >
+              <Canvas predictions={predictions} userUploadedImage={userUploadedImage} onDraw={setMaskImage} />
+            </Box>
+          </Box>
           <PromptForm onSubmit={handleSubmit} />
-
-          <div className="text-center">
+        </Grid>
+        <Grid
+          item
+          xs={24}
+          sx={{
+            textAlign: 'center',
+          }}
+        >
+          <Box
+            sx={{
+              display: 'inline-block',
+              minWidth: '512px',
+              margin: '0 auto',
+              textAlign: 'center',
+            }}
+          >
             {((predictions.length > 0 && predictions[predictions.length - 1].output) ||
               maskImage ||
               userUploadedImage) && (
-              <button className="lil-button" onClick={startOver}>
+              <Button onClick={startOver}>
                 <StartOverIcon className="icon" />
                 Start over
-              </button>
+              </Button>
             )}
-            <Divider />
-            <Download predictions={predictions} />
-            <Divider />
-            <Link href="https://replicate.com/stability-ai/stable-diffusion">Run with an API</Link>
-            <Divider />
-            <Link href="https://github.com/zeke/inpainter">View on GitHub</Link>
-          </div>
-        </div>
-      </main>
-    </div>
+            <Stack direction="row" spacing={1}>
+              {predictions.length > 0 && (
+                <Button variant="outlined">
+                  <Download predictions={predictions} />
+                </Button>
+              )}
+              <Divider />
+              <Button variant="outlined">
+                <Link href="https://replicate.com/stability-ai/stable-diffusion">Run with an API</Link>
+              </Button>
+              <Divider />
+              <Button variant="outlined">
+                <Link href="https://github.com/zeke/inpainter">View on GitHub</Link>
+              </Button>
+            </Stack>
+          </Box>
+        </Grid>
+      </Grid>
+    </Box>
   );
 }
 

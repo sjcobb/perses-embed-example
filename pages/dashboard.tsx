@@ -1,178 +1,71 @@
-import styles from '../styles/Home.module.css';
-import { ChartsThemeProvider, LineChart, PersesChartsTheme } from '@perses-dev/components';
+import { ViewDashboard } from '@perses-dev/dashboards';
+import { DashboardResource } from '@perses-dev/core';
 import { Box } from '@mui/material';
-import Switch from '@mui/material/Switch';
+import { useDatasourceApi } from '../components/dashboards/datasource-api';
+import { PersesDashboard } from '../components/dashboards/PersesDashboard';
 
-const mockData = [
-  {
-    metric: {
-      node: '1234567',
-      environment: 'dev',
-      type: 'example',
-    },
-    __name__: 'usage_count',
-    values: [
-      [1652788230, '1200700'],
-      [1652788245, '2033700'],
-      [1652788260, '1100344'],
-      [1652788290, '1823555'],
-      [1652788305, '2011000'],
-      [1652788410, '990988'],
-    ],
+export const dashboard: DashboardResource = {
+  kind: 'Dashboard',
+  metadata: {
+    name: 'Predictions Dashboard',
+    created_at: '',
+    updated_at: '',
+    project: '',
+    version: 0,
   },
-  {
-    metric: {
-      node: 'abcdefg',
-      environment: 'staging',
-      type: 'test',
-    },
-    __name__: 'test_series',
-    values: [
-      [1652788230, '600900'],
-      [1652788245, '1011100'],
-      [1652788260, '900444'],
-      [1652788290, '823111'],
-      [1652788305, '700001'],
-      [1652788410, '622221'],
-    ],
-  },
-];
-
-function formatMetrics(queryResult) {
-  const graphData = { timeSeries: [], xAxis: [] };
-  const xValues = new Set();
-  for (const result of queryResult) {
-    const yValues = [];
-    if ('values' in result) {
-      for (const [x, y] of result.values) {
-        xValues.add(Number(x) * 1000);
-        yValues.push(Number(y));
-      }
-      const name = getUniqueKeyForPrometheusResult(result.metric, true);
-      const lineSeries = getLineSeries(name, yValues);
-      graphData.timeSeries.push(lineSeries);
-    }
-  }
-  graphData.xAxis = Array.from(xValues).sort();
-  return graphData;
-}
-
-// https://echarts.apache.org/en/option.html#series-line.type
-function getLineSeries(name, data) {
-  return {
-    type: 'line',
-    name: name,
-    data: data,
-    color: getRandomColor(name),
-    showSymbol: false,
-    symbol: 'circle',
-    sampling: 'lttb',
-    lineStyle: {
-      width: 1,
-    },
-    emphasis: {
-      lineStyle: {
-        width: 1.5,
+  spec: {
+    datasources: {},
+    duration: '6h',
+    variables: [],
+    panels: {
+      ImagePanelFirst: {
+        kind: 'Panel',
+        spec: {
+          display: {
+            name: 'First Generated Image',
+          },
+          plugin: {
+            kind: 'GenerateImageCanvas',
+            spec: {},
+          },
+        },
       },
     },
-    markLine: {},
-  };
-}
-
-function stringifyPrometheusMetricLabels(labels, removeExprWrap) {
-  const labelStrings = [];
-  Object.keys(labels)
-    .sort()
-    .forEach((labelName) => {
-      const labelValue = labels[labelName];
-      if (typeof labelValue === 'string') {
-        if (removeExprWrap) {
-          labelStrings.push(`"${labelName}":"${labelValue}"`);
-        } else {
-          labelStrings.push(`${labelName}="${labelValue}"`);
-        }
-      }
-    });
-  return `{${labelStrings.join(',')}}`;
-}
-
-function getUniqueKeyForPrometheusResult(metricLabels, removeExprWrap) {
-  const metricNameKey = '__name__';
-  if (!!metricLabels) {
-    if (metricLabels.hasOwnProperty(metricNameKey)) {
-      const stringifiedLabels = stringifyPrometheusMetricLabels(
-        {
-          ...metricLabels,
-          [metricNameKey]: undefined,
+    layouts: [
+      {
+        kind: 'Grid',
+        spec: {
+          display: { title: 'Row 1', collapse: { open: true } },
+          items: [
+            {
+              x: 0,
+              y: 0,
+              width: 12,
+              height: 10,
+              content: {
+                $ref: '#/spec/panels/ImagePanelFirst',
+              },
+            },
+          ],
         },
-        removeExprWrap
-      );
-      if (removeExprWrap) {
-        return `${stringifiedLabels}`;
-      } else {
-        return `${metricLabels[metricNameKey]}${stringifiedLabels}`;
-      }
-    }
-    return stringifyPrometheusMetricLabels(metricLabels, removeExprWrap);
-  }
-  return '';
-}
-
-function getRandomColor(identifier) {
-  let hash = 0;
-  for (let index = 0; index < identifier.length; index++) {
-    hash = identifier.charCodeAt(index) + ((hash << 5) - hash);
-  }
-  // Use HSLA to only get random "bright" colors from this
-  const color = `hsla(${~~(180 * hash)},50%,50%,0.8)`;
-  return color;
-}
-
-const label = { inputProps: { 'aria-label': 'Switch demo' } };
-
-const testChartsTheme: PersesChartsTheme = {
-  echartsTheme: {},
-  noDataOption: {},
-  sparkline: {
-    width: 1,
-    color: '#000000',
+      },
+    ],
   },
 };
 
 export default function Dashboard() {
-  const formattedData = formatMetrics(mockData);
-  const gridOverrides = {
-    top: 60,
-    bottom: 50,
-  };
-  const legendOverrides = {
-    type: 'scroll',
-    bottom: 0,
-  };
+  const datasourceApi = useDatasourceApi();
   return (
-    <div className={styles.container}>
-      <section>
-        <span>With default Theme:</span>
-      </section>
-      <section>
-        <Switch {...label} defaultChecked />
-        <Switch {...label} />
-        <Switch {...label} disabled defaultChecked />
-      </section>
-
-      <section>
-        <p>TODO: fix lodash-es ERR_REQUIRE_ESM issue</p>
-        {/* <ChartsThemeProvider chartsTheme={testChartsTheme}>
-          <Box>
-            <LineChart
-              data={formattedData}
-              height={450}
-              grid={gridOverrides}
-              legend={legendOverrides}
-            />
-          </Box>
-        </ChartsThemeProvider> */}
-      </section>
-    </div>
+    <Box>
+      <PersesDashboard>
+        <ViewDashboard
+          dashboardResource={dashboard}
+          datasourceApi={datasourceApi}
+          isReadonly={true}
+          initialVariableIsSticky={false}
+          // enabledURLParams={false}
+        />
+      </PersesDashboard>
+    </Box>
   );
 }

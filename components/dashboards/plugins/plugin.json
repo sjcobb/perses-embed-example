@@ -1,0 +1,18 @@
+{
+  "kind": "PluginModule",
+  "metadata": {
+    "name": "Custom Perses Panels"
+  },
+  "spec": {
+    "plugins": [
+      {
+        "pluginType": "Panel",
+        "kind": "GenerateImageCanvas",
+        "display": {
+          "name": "Stable Diffusion - Generate Image",
+          "description": "Perses panel plugin for inpainting with Stable Diffusion using using the Replicate API"
+        }
+      }
+    ]
+  }
+}

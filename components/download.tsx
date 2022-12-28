@@ -15,11 +15,5 @@ export default function Download(props) {
       <DownloadIcon className="icon" />
       Download
     </Link>
-    //  href={lastImage}>
-    //   <a className="lil-button" target="_blank" rel="noopener noreferrer">
-    //     <DownloadIcon className="icon" />
-    //     Download
-    //   </a>
-    // </Link>
   );
 }

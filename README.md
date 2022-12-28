@@ -22,9 +22,22 @@ The Perses LineChart.tsx component uses ECharts, but has a custom tooltip for im
 
 ## TODO
 
-- [ ] move lato imports out of @perses-dev/components
+- [ ] dynamic render Perses dashboard to avoid Server mismatch errors
+  - `next-dev.js?3515:20 Warning: Prop id did not match. Server: "Panel-10-header-title" Client: "Panel-0-header-title"`
+  - https://github.com/vercel/next.js/issues/12863#issuecomment-628660240
+- [ ] fix Fetch API errors in TimeSeriesChart
+  - fetch.js?efea:16 Fetch API cannot load demo.do.prometheus.io:9100/api/v1/query_range. URL scheme "demo.do.prometheus.io" is not supported.
+- [ ] ViewDashboard props - make possible to disable query params
+  - Uncaught ReferenceError: window is not defined
+  - https://github.com/pbeshai/use-query-params/issues/13
+  - https://github.com/amannn/next-query-params
+- [ ] echarts/core.js import errors
+  - explanation: https://github.com/hustcc/echarts-for-react/issues/425#issuecomment-854122398
+- [ ] echarts useLayoutEffect error
+  - https://gist.github.com/gaearon/e7d97cdf38a2907924ea12e4ebdf3c85
+- [x] move lato imports out of @perses-dev/components
   - https://github.com/perses/perses/blob/main/ui/components/src/theme/typography.ts#L14-L17
-- [ ] lodash-es fix issues with code transpilation from NPM modules using ES6 imports
+- [x] lodash-es fix issues with code transpilation from NPM modules using ES6 imports
   - try using next-transpile-modules: https://github.com/vercel/next.js/issues/706#issuecomment-911559308
     - https://github.com/vercel/next.js/issues/2259#issuecomment-416150640
   - issue may be in core package import here: https://github.com/perses/perses/blob/494190b37debf77d56674525f73f6b3c95ca0cf7/ui/core/src/utils/memo.ts#L15
@@ -40,6 +53,8 @@ The Perses LineChart.tsx component uses ECharts, but has a custom tooltip for im
 
 ### Resources
 
+- https://nextjs.org/blog/next-12#es-modules-support-and-url-imports
+- https://strikingloo.github.io/stable-diffusion-vs-dalle-2#prompt-examples-and-experiments
 - https://blog.logrocket.com/next-js-13-new-app-directory/#page-directory-vs-app-directory
   - `warn - The app directory is experimental. To enable, add 'appDir: true' to your 'next.config.js' configuration under 'experimental'. See https://nextjs.org/docs/messages/experimental-app-dir-config"`
   - error - Conflicting app and page file was found, please remove the conflicting files to continue: "pages/index.tsx" - "app/page.tsx"

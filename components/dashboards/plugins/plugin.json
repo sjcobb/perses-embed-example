@@ -9,8 +9,16 @@
         "pluginType": "Panel",
         "kind": "GenerateImageCanvas",
         "display": {
-          "name": "Stable Diffusion - Generate Image",
+          "name": "Generate Image Canvas",
           "description": "Perses panel plugin for inpainting with Stable Diffusion using using the Replicate API"
+        }
+      },
+      {
+        "pluginType": "TimeSeriesQuery",
+        "kind": "ImageQuery",
+        "display": {
+          "name": "Generate Image Query",
+          "description": ""
         }
       }
     ]

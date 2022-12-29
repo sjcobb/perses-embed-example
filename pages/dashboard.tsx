@@ -26,7 +26,19 @@ export const dashboard: DashboardResource = {
           },
           plugin: {
             kind: 'GenerateImageCanvas',
-            spec: {},
+            spec: {
+              query: {
+                kind: 'TimeSeriesQuery',
+                spec: {
+                  plugin: {
+                    kind: 'ImageQuery',
+                    spec: {
+                      query: 'initial test stable diffusion prompt',
+                    },
+                  },
+                },
+              },
+            },
           },
         },
       },
@@ -40,8 +52,8 @@ export const dashboard: DashboardResource = {
             {
               x: 0,
               y: 0,
-              width: 12,
-              height: 10,
+              width: 24,
+              height: 12,
               content: {
                 $ref: '#/spec/panels/ImagePanelFirst',
               },

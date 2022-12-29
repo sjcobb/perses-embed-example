@@ -11,12 +11,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { produce } from 'immer';
-import { Stack, TextField, FormControl, InputLabel } from '@mui/material';
-import { DatasourceSelect, DatasourceSelectProps, useDatasourceClient } from '@perses-dev/plugin-system';
-import { DEFAULT_PROM, isDefaultPromSelector, isPrometheusDatasourceSelector, PrometheusClient } from '../../model';
-import { PromQLEditor } from '../../components';
-import { PrometheusTimeSeriesQueryEditorProps, useQueryState, useFormatState } from './query-editor-model';
+// import { produce } from 'immer';
+import { Stack, TextField } from '@mui/material';
+// import { Stack, TextField, FormControl, InputLabel } from '@mui/material';
+// import { DatasourceSelect, DatasourceSelectProps, useDatasourceClient } from '@perses-dev/plugin-system';
+// import { DEFAULT_PROM, isDefaultPromSelector, isPrometheusDatasourceSelector, PrometheusClient } from '../../model';
+// import { PromQLEditor } from '../../components';
+import { PrometheusTimeSeriesQueryEditorProps } from './query-editor-model';
 
 /**
  * The options editor component for editing a ImageQuery's spec.

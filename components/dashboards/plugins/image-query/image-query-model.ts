@@ -28,7 +28,7 @@ export interface ImageQuerySpec {
   // input
   // logs
   // metrics
-  // output
+  output?: any;
   // started_at
   // status
   // urls

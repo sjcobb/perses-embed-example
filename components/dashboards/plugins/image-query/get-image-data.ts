@@ -12,7 +12,8 @@
 // limitations under the License.
 
 // import { fromUnixTime } from 'date-fns';
-import mockData from './mock-data';
+// import testData from './mock-data';
+import { testDataAlt } from './mock-data';
 import { TimeSeriesData, TimeSeriesQueryPlugin } from '@perses-dev/plugin-system';
 // import {
 //   parseValueTuple,
@@ -43,7 +44,8 @@ export const getTimeSeriesData: TimeSeriesQueryPlugin<ImageQuerySpec>['getTimeSe
   if (spec.query === undefined || spec.query === null || spec.query === '') {
     // // Do not make a request to the backend, instead return an empty TimeSeriesData
     // return { series: [] };
-    return mockData;
+    // return mockData;
+    return testDataAlt;
   }
 
   // // const minStep = getDurationStringSeconds(spec.min_step);
@@ -86,7 +88,8 @@ export const getTimeSeriesData: TimeSeriesQueryPlugin<ImageQuerySpec>['getTimeSe
   // // TODO: What about error responses from Prom that have a response body?
   // const result = response.data?.result ?? [];
 
-  const result = mockData;
+  // const result = mockData;
+  const result = testDataAlt;
   console.log(result);
 
   return result;

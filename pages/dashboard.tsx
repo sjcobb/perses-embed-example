@@ -53,7 +53,7 @@ export const dashboard: DashboardResource = {
               x: 0,
               y: 0,
               width: 24,
-              height: 12,
+              height: 18,
               content: {
                 $ref: '#/spec/panels/ImagePanelFirst',
               },

@@ -33,7 +33,8 @@ export const dashboard: DashboardResource = {
                   plugin: {
                     kind: 'ImageQuery',
                     spec: {
-                      query: 'initial test stable diffusion prompt',
+                      query: 'spec.query - initial test stable diffusion prompt',
+                      saved_image: 'spec.saved_image - generated image url goes here',
                     },
                   },
                 },

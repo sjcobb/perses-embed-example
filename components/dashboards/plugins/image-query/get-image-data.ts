@@ -24,7 +24,7 @@ export const getTimeSeriesData: TimeSeriesQueryPlugin<ImageQuerySpec>['getTimeSe
     return testDataAlt;
   }
 
-  if (spec.query !== 'cartoon of a horse and a otter playing chess in the style of E. C. Segar') {
+  if (spec.query !== 'cartoon portrait of animals playing chess in the style of Susie Carmichael, award winning') {
     return;
   }
 

@@ -38,6 +38,8 @@ export function useQueryState(props: PrometheusTimeSeriesQueryEditorProps) {
     setLastSyncedQuery(value.query);
   }
 
+  // TODO: call useTimeSeriesQuery here?
+
   // Update our local state's copy as the user types
   const handleQueryChange = (e: string) => {
     setQuery(e);

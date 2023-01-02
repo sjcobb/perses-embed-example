@@ -4,8 +4,7 @@ import { TimeSeriesQueryDefinition } from '@perses-dev/core';
 
 export interface GenerateImageCanvasOptions {
   query: TimeSeriesQueryDefinition;
-  // unit?: UnitOptions;
-  // max?: number;
+  saved_image?: string;
 }
 
 export function createInitialGenerateImageCanvasOptions(): GenerateImageCanvasOptions {
@@ -17,6 +16,7 @@ export function createInitialGenerateImageCanvasOptions(): GenerateImageCanvasOp
           kind: 'ImageQuery',
           spec: {
             query: 'movie still of a robot flying on a hover board, award winning',
+            saved_image: 'generated image url goes here',
           },
         },
       },

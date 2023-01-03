@@ -44,6 +44,31 @@ export const dashboard: DashboardResource = {
           },
         },
       },
+      GaugeExample: {
+        kind: 'Panel',
+        spec: {
+          display: { name: 'Gauge Example' },
+          plugin: {
+            kind: 'GaugeChart',
+            spec: {
+              calculation: 'LastNumber',
+              query: {
+                kind: 'TimeSeriesQuery',
+                spec: {
+                  plugin: {
+                    kind: 'PrometheusTimeSeriesQuery',
+                    spec: {
+                      query: 'up',
+                    },
+                  },
+                },
+              },
+              thresholds: { steps: [{ value: 0.2 }, { value: 0.35 }] },
+              unit: { kind: 'PercentDecimal' },
+            },
+          },
+        },
+      },
     },
     layouts: [
       {
@@ -51,15 +76,24 @@ export const dashboard: DashboardResource = {
         spec: {
           display: { title: 'Row 1', collapse: { open: true } },
           items: [
-            {
-              x: 0,
-              y: 0,
-              width: 24,
-              height: 18,
-              content: {
-                $ref: '#/spec/panels/ImagePanelFirst',
-              },
-            },
+            // {
+            //   x: 0,
+            //   y: 0,
+            //   width: 16,
+            //   height: 12,
+            //   content: {
+            //     $ref: '#/spec/panels/ImagePanelFirst',
+            //   },
+            // },
+            // {
+            //   x: 16,
+            //   y: 0,
+            //   width: 8,
+            //   height: 8,
+            //   content: {
+            //     $ref: '#/spec/panels/GaugeExample',
+            //   },
+            // },
           ],
         },
       },

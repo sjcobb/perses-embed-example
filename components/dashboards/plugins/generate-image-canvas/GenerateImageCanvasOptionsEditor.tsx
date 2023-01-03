@@ -31,7 +31,12 @@ export function GenerateImageCanvasOptionsEditor(props: GenerateImageCanvasOptio
       },
     },
   };
-  const imageURL = useUpdateSavedImage(querySpec, value);
+  const { imageURL, isLoading } = useUpdateSavedImage(querySpec);
+
+  if (isLoading) {
+    return <Typography>Image generating...</Typography>;
+  }
+
   if (imageURL) {
     onChange(
       produce(value, (draft: GenerateImageCanvasOptions) => {

@@ -77,6 +77,9 @@ export default function Dashboard() {
       h2: {
         fontSize: '1.2rem',
       },
+      h3: {
+        fontSize: '1.05rem',
+      },
     },
   });
   console.log('Dashboard -> theme: ', theme);

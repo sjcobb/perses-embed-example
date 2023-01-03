@@ -49,7 +49,7 @@ export const getTimeSeriesData: TimeSeriesQueryPlugin<ImageQuerySpec>['getTimeSe
   }
 
   while (prediction.status !== 'succeeded' && prediction.status !== 'failed') {
-    await sleep(5000);
+    await sleep(2000);
     const response = await fetch('/api/predictions/' + prediction.id);
     prediction = await response.json();
     if (response.status !== 200) {

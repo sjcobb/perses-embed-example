@@ -76,15 +76,15 @@ export const dashboard: DashboardResource = {
         spec: {
           display: { title: 'Row 1', collapse: { open: true } },
           items: [
-            // {
-            //   x: 0,
-            //   y: 0,
-            //   width: 16,
-            //   height: 12,
-            //   content: {
-            //     $ref: '#/spec/panels/ImagePanelFirst',
-            //   },
-            // },
+            {
+              x: 0,
+              y: 0,
+              width: 16,
+              height: 12,
+              content: {
+                $ref: '#/spec/panels/ImagePanelFirst',
+              },
+            },
             // {
             //   x: 16,
             //   y: 0,

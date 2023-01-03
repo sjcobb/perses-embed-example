@@ -16,6 +16,7 @@ const nextConfig = {
   },
   experimental: {
     appDir: false,
+    esmExternals: 'loose',
   },
   // https://nextjs.org/blog/next-13-1#built-in-module-transpilation-stable
   transpilePackages: [

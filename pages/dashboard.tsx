@@ -1,6 +1,6 @@
 import { ViewDashboard } from '@perses-dev/dashboards';
 import { DashboardResource } from '@perses-dev/core';
-import { Box } from '@mui/material';
+import { Box, createTheme, ThemeProvider } from '@mui/material';
 import { useDatasourceApi } from '../components/dashboards/datasource-api';
 import { PersesDashboard } from '../components/dashboards/PersesDashboard';
 
@@ -26,7 +26,21 @@ export const dashboard: DashboardResource = {
           },
           plugin: {
             kind: 'GenerateImageCanvas',
-            spec: {},
+            spec: {
+              saved_image: null,
+              query: {
+                kind: 'TimeSeriesQuery',
+                spec: {
+                  plugin: {
+                    kind: 'ImageQuery',
+                    spec: {
+                      query: 'magazine cover of two otters playing basketball, hyper detailed, award winning',
+                      query_enabled: false,
+                    },
+                  },
+                },
+              },
+            },
           },
         },
       },
@@ -40,8 +54,8 @@ export const dashboard: DashboardResource = {
             {
               x: 0,
               y: 0,
-              width: 12,
-              height: 10,
+              width: 24,
+              height: 18,
               content: {
                 $ref: '#/spec/panels/ImagePanelFirst',
               },
@@ -55,17 +69,33 @@ export const dashboard: DashboardResource = {
 
 export default function Dashboard() {
   const datasourceApi = useDatasourceApi();
+
+  const theme = createTheme({
+    typography: {
+      fontFamily: '"Lato", sans-serif',
+      fontSize: 11,
+      h2: {
+        fontSize: '1.2rem',
+      },
+      h3: {
+        fontSize: '1.05rem',
+      },
+    },
+  });
+
   return (
-    <Box>
-      <PersesDashboard>
-        <ViewDashboard
-          dashboardResource={dashboard}
-          datasourceApi={datasourceApi}
-          isReadonly={true}
-          initialVariableIsSticky={false}
-          // enabledURLParams={false}
-        />
-      </PersesDashboard>
-    </Box>
+    <ThemeProvider theme={theme}>
+      <Box>
+        <PersesDashboard>
+          <ViewDashboard
+            dashboardResource={dashboard}
+            datasourceApi={datasourceApi}
+            isReadonly={true}
+            initialVariableIsSticky={false}
+            // enabledURLParams={false}
+          />
+        </PersesDashboard>
+      </Box>
+    </ThemeProvider>
   );
 }

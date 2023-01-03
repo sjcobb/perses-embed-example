@@ -37,6 +37,7 @@ export function GenerateImageCanvasOptionsEditor(props: GenerateImageCanvasOptio
     onChange(
       produce(value, (draft: GenerateImageCanvasOptions) => {
         draft.saved_image = imageURL;
+        draft.query.spec.plugin.spec.query_enabled = false;
       })
     );
   }

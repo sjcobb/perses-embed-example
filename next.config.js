@@ -29,16 +29,16 @@ const nextConfig = {
     'zrender',
     'lodash-es',
   ],
-  async redirects() {
-    return [
-      {
-        source: '/',
-        destination:'/dashboard',
-        permanent: true,
-        basePath:false
-      },
-    ]
-  },
+  // async redirects() {
+  //   return [
+  //     {
+  //       source: '/',
+  //       destination:'/dashboard',
+  //       permanent: true,
+  //       basePath:false
+  //     },
+  //   ]
+  // },
 };
 
 module.exports = nextConfig;

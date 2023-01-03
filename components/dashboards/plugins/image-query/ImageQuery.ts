@@ -12,7 +12,6 @@
 // limitations under the License.
 
 import { TimeSeriesQueryPlugin } from '@perses-dev/plugin-system';
-// import { parseTemplateVariables } from '../../model';
 import { getTimeSeriesData } from './get-image-data';
 import { ImageQueryEditor } from './ImageQueryEditor';
 import { ImageQuerySpec } from './image-query-model';
@@ -27,8 +26,4 @@ export const ImageQuery: TimeSeriesQueryPlugin<ImageQuerySpec> = {
     query: '',
     datasource: undefined,
   }),
-  // createInitialOptions: () => ({
-  //   query: '',
-  //   datasource: undefined,
-  // }),
 };

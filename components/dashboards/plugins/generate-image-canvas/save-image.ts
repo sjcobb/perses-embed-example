@@ -1,7 +1,4 @@
-// import { TimeSeriesQueryDefinition, UnknownSpec } from '@perses-dev/core';
 import { useTimeSeriesQuery } from '@perses-dev/plugin-system';
-// import { GenerateImageCanvasOptions } from './generate-image-canvas-model';
-// import { ImageQuerySpec } from '../image-query/image-query-model';
 
 /**
  * Update generated spec.saved_image in custom GenerateImageCanvasPanel dashboard JSON
@@ -12,7 +9,7 @@ export function useUpdateSavedImage(querySpec: any) {
   const { data, isLoading, error } = useTimeSeriesQuery(query, { suggestedStepMs });
 
   // @ts-ignore
-  if (data === undefined || data.output == null) {
+  if (data == null || data.output == null) {
     return { imageURL: null, isLoading, error };
   }
 

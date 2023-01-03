@@ -1,6 +1,6 @@
 import { ViewDashboard } from '@perses-dev/dashboards';
 import { DashboardResource } from '@perses-dev/core';
-import { Box } from '@mui/material';
+import { Box, createTheme, ThemeProvider } from '@mui/material';
 import { useDatasourceApi } from '../components/dashboards/datasource-api';
 import { PersesDashboard } from '../components/dashboards/PersesDashboard';
 
@@ -69,17 +69,31 @@ export const dashboard: DashboardResource = {
 
 export default function Dashboard() {
   const datasourceApi = useDatasourceApi();
+
+  const theme = createTheme({
+    typography: {
+      fontFamily: '"Lato", sans-serif',
+      fontSize: 11,
+      h2: {
+        fontSize: '1.2rem',
+      },
+    },
+  });
+  console.log('Dashboard -> theme: ', theme);
+
   return (
-    <Box>
-      <PersesDashboard>
-        <ViewDashboard
-          dashboardResource={dashboard}
-          datasourceApi={datasourceApi}
-          isReadonly={true}
-          initialVariableIsSticky={false}
-          // enabledURLParams={false}
-        />
-      </PersesDashboard>
-    </Box>
+    <ThemeProvider theme={theme}>
+      <Box>
+        <PersesDashboard>
+          <ViewDashboard
+            dashboardResource={dashboard}
+            datasourceApi={datasourceApi}
+            isReadonly={true}
+            initialVariableIsSticky={false}
+            // enabledURLParams={false}
+          />
+        </PersesDashboard>
+      </Box>
+    </ThemeProvider>
   );
 }

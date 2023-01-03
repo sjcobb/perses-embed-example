@@ -9,14 +9,14 @@ const DEFAULT_IMAGE_URL = 'https://via.placeholder.com/150';
 export function GenerateImageCanvasPanel(props: PanelProps<GenerateImageCanvasOptions>) {
   const { spec: pluginSpec, contentDimensions } = props;
   const { query } = pluginSpec;
-  const savedImage = pluginSpec.saved_image ?? 'No image saved, please update prompt';
+  const savedImage = pluginSpec.saved_image ?? 'Please update prompt to generate a new image';
 
   if (contentDimensions === undefined) {
     return null;
   }
 
   const promptHeader =
-    pluginSpec.query.spec.plugin.spec.query.toString() ?? 'empty - please update prompt in query editor';
+    pluginSpec.query.spec.plugin.spec.query.toString() ?? 'Empty - please update prompt in query editor';
 
   return (
     <Box

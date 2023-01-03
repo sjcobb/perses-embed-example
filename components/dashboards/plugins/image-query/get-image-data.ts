@@ -26,9 +26,9 @@ export const getTimeSeriesData: TimeSeriesQueryPlugin<ImageQuerySpec>['getTimeSe
     return;
   }
 
-  if (spec.query !== 'magazine cover of two otters playing basketball, hyper detailed, award winning') {
-    return;
-  }
+  // if (spec.query !== 'magazine cover of two otters playing basketball, hyper detailed, award winning') {
+  //   return;
+  // }
 
   const body = {
     prompt: spec.query,

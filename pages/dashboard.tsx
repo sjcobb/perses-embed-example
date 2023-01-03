@@ -27,14 +27,14 @@ export const dashboard: DashboardResource = {
           plugin: {
             kind: 'GenerateImageCanvas',
             spec: {
-              saved_image: 'GenerateImageCanvas -> spec.saved_image',
+              saved_image: null,
               query: {
                 kind: 'TimeSeriesQuery',
                 spec: {
                   plugin: {
                     kind: 'ImageQuery',
                     spec: {
-                      query: 'spec.query - initial test stable diffusion prompt',
+                      query: 'magazine cover of two otters playing basketball, hyper detailed, award winning',
                       query_enabled: false,
                     },
                   },
@@ -82,7 +82,6 @@ export default function Dashboard() {
       },
     },
   });
-  console.log('Dashboard -> theme: ', theme);
 
   return (
     <ThemeProvider theme={theme}>

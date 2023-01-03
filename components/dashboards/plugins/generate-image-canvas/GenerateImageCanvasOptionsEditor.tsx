@@ -33,10 +33,6 @@ export function GenerateImageCanvasOptionsEditor(props: GenerateImageCanvasOptio
   };
   const { imageURL, isLoading } = useUpdateSavedImage(querySpec);
 
-  if (isLoading) {
-    return <Typography>Image generating...</Typography>;
-  }
-
   if (imageURL) {
     onChange(
       produce(value, (draft: GenerateImageCanvasOptions) => {
@@ -56,6 +52,7 @@ export function GenerateImageCanvasOptionsEditor(props: GenerateImageCanvasOptio
   return (
     <>
       <Stack direction="row" spacing={1}>
+        {isLoading && <Typography>Image generating...</Typography>}
         <Button
           variant="outlined"
           color="secondary"

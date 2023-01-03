@@ -11,20 +11,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { testDataAlt } from './mock-data';
 import { TimeSeriesQueryPlugin } from '@perses-dev/plugin-system';
 import { ImageQuerySpec } from './image-query-model';
-import {} from './image-query-model';
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 export const getTimeSeriesData: TimeSeriesQueryPlugin<ImageQuerySpec>['getTimeSeriesData'] = async (spec, context) => {
   if (spec.query === undefined || spec.query === null || spec.query === '') {
     // Do not make a request to the backend, instead return an empty TimeSeriesData
-    return testDataAlt;
+    return;
   }
 
-  if (spec.query !== 'cartoon portrait of animals playing chess in the style of Susie Carmichael, award winning') {
+  if (!spec.query_enabled) {
+    return;
+  }
+
+  if (spec.query !== 'magazine cover of two otters playing basketball, hyper detailed, award winning') {
     return;
   }
 

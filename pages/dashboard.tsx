@@ -27,6 +27,7 @@ export const dashboard: DashboardResource = {
           plugin: {
             kind: 'GenerateImageCanvas',
             spec: {
+              saved_image: 'GenerateImageCanvas -> spec.saved_image',
               query: {
                 kind: 'TimeSeriesQuery',
                 spec: {
@@ -34,7 +35,7 @@ export const dashboard: DashboardResource = {
                     kind: 'ImageQuery',
                     spec: {
                       query: 'spec.query - initial test stable diffusion prompt',
-                      saved_image: 'spec.saved_image - generated image url goes here',
+                      query_enabled: false,
                     },
                   },
                 },

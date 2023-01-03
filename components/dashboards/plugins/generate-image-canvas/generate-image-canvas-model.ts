@@ -9,6 +9,7 @@ export interface GenerateImageCanvasOptions {
 
 export function createInitialGenerateImageCanvasOptions(): GenerateImageCanvasOptions {
   return {
+    saved_image: 'generated image url goes here',
     query: {
       kind: 'TimeSeriesQuery',
       spec: {
@@ -16,7 +17,6 @@ export function createInitialGenerateImageCanvasOptions(): GenerateImageCanvasOp
           kind: 'ImageQuery',
           spec: {
             query: 'movie still of a robot flying on a hover board, award winning',
-            saved_image: 'generated image url goes here',
           },
         },
       },

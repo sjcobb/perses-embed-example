@@ -20,6 +20,7 @@ import { DatasourceSelector, DurationString } from '@perses-dev/core';
  */
 export interface ImageQuerySpec {
   query?: string;
+  query_enabled?: boolean;
   datasource?: any;
   completed_at?: string;
   created_at?: string;

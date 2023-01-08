@@ -19,15 +19,15 @@ import {
   TimeSeriesQueryEditorProps,
 } from '@perses-dev/plugin-system';
 import { produce } from 'immer';
-import { GaugeChartOptions } from './gauge-chart-model';
-import { GaugeChartOptionsEditorSettings } from './GaugeChartOptionsEditorSettings';
+import { ScatterChartOptions } from './gauge-chart-model';
+import { ScatterChartOptionsEditorSettings } from './ScatterChartOptionsEditorSettings';
 
-export type GaugeChartOptionsEditorProps = OptionsEditorProps<GaugeChartOptions>;
+export type ScatterChartOptionsEditorProps = OptionsEditorProps<ScatterChartOptions>;
 
 /**
  * Component for visually editing a Gauge Chart's spec.
  */
-export function GaugeChartOptionsEditor(props: GaugeChartOptionsEditorProps) {
+export function ScatterChartOptionsEditor(props: ScatterChartOptionsEditorProps) {
   const { onChange, value } = props;
   const { query } = value;
 
@@ -46,7 +46,7 @@ export function GaugeChartOptionsEditor(props: GaugeChartOptionsEditorProps) {
           content: <TimeSeriesQueryEditor value={query} onChange={handleQueryChange} />,
         },
         settings: {
-          content: <GaugeChartOptionsEditorSettings {...props} />,
+          content: <ScatterChartOptionsEditorSettings {...props} />,
         },
         json: {
           content: <JSONEditor {...props} />,

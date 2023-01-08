@@ -12,15 +12,15 @@
 // limitations under the License.
 
 import { PanelPlugin } from '@perses-dev/plugin-system';
-import { createInitialGaugeChartOptions, GaugeChartOptions } from './gauge-chart-model';
-import { GaugeChartOptionsEditor } from './GaugeChartOptionsEditor';
-import { GaugeChartPanel } from './GaugeChartPanel';
+import { createInitialScatterChartOptions, ScatterChartOptions } from './gauge-chart-model';
+import { ScatterChartOptionsEditor } from './ScatterChartOptionsEditor';
+import { ScatterChartPanel } from './ScatterChartPanel';
 
 /**
- * The core GaugeChart panel plugin for Perses.
+ * The core ScatterChart panel plugin for Perses.
  */
-export const GaugeChart: PanelPlugin<GaugeChartOptions> = {
-  PanelComponent: GaugeChartPanel,
-  OptionsEditorComponent: GaugeChartOptionsEditor,
-  createInitialOptions: createInitialGaugeChartOptions,
+export const ScatterChart: PanelPlugin<ScatterChartOptions> = {
+  PanelComponent: ScatterChartPanel,
+  OptionsEditorComponent: ScatterChartOptionsEditor,
+  createInitialOptions: createInitialScatterChartOptions,
 };

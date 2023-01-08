@@ -24,15 +24,20 @@ import {
   OptionsEditorColumn,
   OptionsEditorControl,
 } from '@perses-dev/components';
-import { GaugeChartOptionsEditorProps } from './GaugeChartOptionsEditor';
-import { GaugeChartOptions, DEFAULT_UNIT, DEFAULT_MAX_PERCENT, DEFAULT_MAX_PERCENT_DECIMAL } from './gauge-chart-model';
+import { ScatterChartOptionsEditorProps } from './ScatterChartOptionsEditor';
+import {
+  ScatterChartOptions,
+  DEFAULT_UNIT,
+  DEFAULT_MAX_PERCENT,
+  DEFAULT_MAX_PERCENT_DECIMAL,
+} from './gauge-chart-model';
 
-export function GaugeChartOptionsEditorSettings(props: GaugeChartOptionsEditorProps) {
+export function ScatterChartOptionsEditorSettings(props: ScatterChartOptionsEditorProps) {
   const { onChange, value } = props;
 
   const handleCalculationChange: CalculationSelectorProps['onChange'] = (newCalculation) => {
     onChange(
-      produce(value, (draft: GaugeChartOptions) => {
+      produce(value, (draft: ScatterChartOptions) => {
         draft.calculation = newCalculation;
       })
     );
@@ -40,7 +45,7 @@ export function GaugeChartOptionsEditorSettings(props: GaugeChartOptionsEditorPr
 
   const handleUnitChange: UnitSelectorProps['onChange'] = (newUnit) => {
     onChange(
-      produce(value, (draft: GaugeChartOptions) => {
+      produce(value, (draft: ScatterChartOptions) => {
         draft.unit = newUnit;
       })
     );
@@ -73,7 +78,7 @@ export function GaugeChartOptionsEditorSettings(props: GaugeChartOptionsEditorPr
                   // ensure empty value resets to undef to allow chart to calculate max
                   const newValue = e.target.value ? Number(e.target.value) : undefined;
                   onChange(
-                    produce(value, (draft: GaugeChartOptions) => {
+                    produce(value, (draft: ScatterChartOptions) => {
                       draft.max = newValue;
                     })
                   );

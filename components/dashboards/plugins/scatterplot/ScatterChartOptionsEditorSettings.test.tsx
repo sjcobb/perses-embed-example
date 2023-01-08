@@ -13,8 +13,8 @@
 
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { GaugeChartOptions } from './gauge-chart-model';
-import { GaugeChartOptionsEditorSettings } from './GaugeChartOptionsEditorSettings';
+import { ScatterChartOptions } from './gauge-chart-model';
+import { ScatterChartOptionsEditorSettings } from './ScatterChartOptionsEditorSettings';
 
 const MOCK_QUERY = {
   kind: 'TimeSeriesQuery',
@@ -28,14 +28,14 @@ const MOCK_QUERY = {
   },
 } as const;
 
-describe('GaugeChartOptionsEditorSettings', () => {
-  const renderGaugeChartOptionsEditorSettings = (value: GaugeChartOptions, onChange = jest.fn()) => {
-    render(<GaugeChartOptionsEditorSettings value={value} onChange={onChange} />);
+describe('ScatterChartOptionsEditorSettings', () => {
+  const renderScatterChartOptionsEditorSettings = (value: ScatterChartOptions, onChange = jest.fn()) => {
+    render(<ScatterChartOptionsEditorSettings value={value} onChange={onChange} />);
   };
 
   it('can modify unit', () => {
     const onChange = jest.fn();
-    renderGaugeChartOptionsEditorSettings(
+    renderScatterChartOptionsEditorSettings(
       {
         unit: {
           kind: 'Decimal',
@@ -62,7 +62,7 @@ describe('GaugeChartOptionsEditorSettings', () => {
 
   it('can modify calculation', () => {
     const onChange = jest.fn();
-    renderGaugeChartOptionsEditorSettings(
+    renderScatterChartOptionsEditorSettings(
       {
         unit: {
           kind: 'Days',
@@ -90,7 +90,7 @@ describe('GaugeChartOptionsEditorSettings', () => {
     const onChange = jest.fn((e) => {
       maxValue = e.max;
     });
-    renderGaugeChartOptionsEditorSettings(
+    renderScatterChartOptionsEditorSettings(
       {
         unit: {
           kind: 'Decimal',

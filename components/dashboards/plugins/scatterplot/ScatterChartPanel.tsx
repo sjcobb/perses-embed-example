@@ -14,20 +14,25 @@
 import type { GaugeSeriesOption } from 'echarts';
 import { merge } from 'lodash-es';
 import { useTimeSeriesQuery, PanelProps, CalculationsMap } from '@perses-dev/plugin-system';
-import { GaugeChart, GaugeSeries } from '@perses-dev/components';
+import { ScatterChart, GaugeSeries } from '@perses-dev/components';
 import { Box, Skeleton, Stack } from '@mui/material';
 import { useMemo } from 'react';
 import { convertThresholds, defaultThresholdInput } from '../../model/thresholds';
 import { useSuggestedStepMs } from '../../model/time';
-import { GaugeChartOptions, DEFAULT_UNIT, DEFAULT_MAX_PERCENT, DEFAULT_MAX_PERCENT_DECIMAL } from './gauge-chart-model';
+import {
+  ScatterChartOptions,
+  DEFAULT_UNIT,
+  DEFAULT_MAX_PERCENT,
+  DEFAULT_MAX_PERCENT_DECIMAL,
+} from './gauge-chart-model';
 
 const EMPTY_GAUGE_SERIES: GaugeSeries = { label: '', value: null };
 const GAUGE_MIN_WIDTH = 90;
 const PANEL_PADDING_OFFSET = 20;
 
-export type GaugeChartPanelProps = PanelProps<GaugeChartOptions>;
+export type ScatterChartPanelProps = PanelProps<ScatterChartOptions>;
 
-export function GaugeChartPanel(props: GaugeChartPanelProps) {
+export function ScatterChartPanel(props: ScatterChartPanelProps) {
   const { spec: pluginSpec, contentDimensions } = props;
   const { query, calculation, max } = pluginSpec;
 
@@ -92,7 +97,7 @@ export function GaugeChartPanel(props: GaugeChartPanelProps) {
   // no data message handled inside chart component
   if (gaugeData.length === 0) {
     return (
-      <GaugeChart
+      <ScatterChart
         width={contentDimensions.width}
         height={contentDimensions.height}
         data={EMPTY_GAUGE_SERIES}
@@ -124,7 +129,7 @@ export function GaugeChartPanel(props: GaugeChartPanelProps) {
       {gaugeData.map((series, seriesIndex) => {
         return (
           <Box key={`gauge-series-${seriesIndex}`}>
-            <GaugeChart
+            <ScatterChart
               width={chartWidth}
               height={contentDimensions.height}
               data={series}

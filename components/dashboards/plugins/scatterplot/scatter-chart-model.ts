@@ -23,9 +23,9 @@ export const DEFAULT_MAX_PERCENT = 100;
 export const DEFAULT_MAX_PERCENT_DECIMAL = 1;
 
 /**
- * The Options object type supported by the GaugeChart panel plugin.
+ * The Options object type supported by the ScatterChart panel plugin.
  */
-export interface GaugeChartOptions {
+export interface ScatterChartOptions {
   query: TimeSeriesQueryDefinition;
   calculation: CalculationType;
   unit?: UnitOptions;
@@ -34,9 +34,9 @@ export interface GaugeChartOptions {
 }
 
 /**
- * Creates the initial/empty options for a GaugeChart panel.
+ * Creates the initial/empty options for a ScatterChart panel.
  */
-export function createInitialGaugeChartOptions(): GaugeChartOptions {
+export function createInitialScatterChartOptions(): ScatterChartOptions {
   return {
     // TODO: How do you represent an initially empty/unset graph query?
     query: {

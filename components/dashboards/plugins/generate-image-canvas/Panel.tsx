@@ -1,6 +1,6 @@
-import { ChartsThemeProvider, LineChart, PersesChartsTheme } from '@perses-dev/components';
+import { LineChart } from '@perses-dev/components';
 import { Box } from '@mui/material';
-import { formatMetrics } from '../utils';
+import { formatMetrics } from '@/utils';
 
 interface PanelProps {
   height?: number;
@@ -41,15 +41,6 @@ const mockData = [
   },
 ];
 
-const CHARTS_THEME: PersesChartsTheme = {
-  echartsTheme: {},
-  noDataOption: {},
-  sparkline: {
-    width: 1,
-    color: '#000000',
-  },
-};
-
 export function Panel({ height }: PanelProps) {
   const formattedData = formatMetrics(mockData);
   const gridOverrides = {
@@ -61,11 +52,9 @@ export function Panel({ height }: PanelProps) {
     bottom: 0,
   };
   return (
-    <ChartsThemeProvider chartsTheme={CHARTS_THEME}>
-      <Box sx={{ width: '600px' }}>
-        <h2>Panel Test</h2>
-        <LineChart data={formattedData} height={400} grid={gridOverrides} legend={legendOverrides} />
-      </Box>
-    </ChartsThemeProvider>
+    <Box sx={{ width: '600px' }}>
+      <h2>Panel Test</h2>
+      <LineChart data={formattedData} height={400} grid={gridOverrides} legend={legendOverrides} />
+    </Box>
   );
 }

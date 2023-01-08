@@ -7,7 +7,7 @@ import { PersesDashboard } from '../components/dashboards/PersesDashboard';
 export const dashboard: DashboardResource = {
   kind: 'Dashboard',
   metadata: {
-    name: 'Predictions Dashboard',
+    name: 'Dashboard Embed Example',
     created_at: '',
     updated_at: '',
     project: '',
@@ -17,7 +17,92 @@ export const dashboard: DashboardResource = {
     datasources: {},
     duration: '6h',
     variables: [],
+    // variables: [
+    //   { kind: 'TextVariable', spec: { name: 'job', value: 'node' } },
+    //   {
+    //     kind: 'ListVariable',
+    //     spec: {
+    //       name: 'instance',
+    //       default_value: 'demo.do.prometheus.io:9100',
+    //       allow_all_value: false,
+    //       allow_multiple: false,
+    //       plugin: {
+    //         kind: 'PrometheusLabelValuesVariable',
+    //         spec: {
+    //           label_name: 'instance',
+    //           matchers: ['up{job=~"$job"}'],
+    //         },
+    //       },
+    //     },
+    //   },
+    //   {
+    //     kind: 'ListVariable',
+    //     spec: {
+    //       name: 'interval',
+    //       allow_all_value: false,
+    //       allow_multiple: false,
+    //       plugin: {
+    //         kind: 'StaticListVariable',
+    //         spec: { values: ['1m', '5m'] },
+    //       },
+    //     },
+    //   },
+    // ],
     panels: {
+      TimeSeriesEx: {
+        kind: 'Panel',
+        spec: {
+          display: {
+            name: 'Time Series Panel Example',
+            description: 'Description text',
+          },
+          plugin: {
+            kind: 'TimeSeriesChart',
+            spec: {
+              legend: { position: 'bottom' },
+              queries: [
+                {
+                  kind: 'TimeSeriesQuery',
+                  spec: {
+                    plugin: {
+                      kind: 'PrometheusTimeSeriesQuery',
+                      spec: {
+                        query: 'node_load1{instance=~"(demo.do.prometheus.io:9100)"}',
+                        // query: 'node_load1{instance=~"(demo.do.prometheus.io:9100)",job=~"node|alertmanager"}',
+                        // query: 'up',
+                        series_name_format: 'job - {{job}}, {{env}} {{instance}}',
+                      },
+                    },
+                  },
+                },
+                {
+                  kind: 'TimeSeriesQuery',
+                  spec: {
+                    plugin: {
+                      kind: 'PrometheusTimeSeriesQuery',
+                      spec: {
+                        query: 'node_load15{instance=~"(demo.do.prometheus.io:9100)"}',
+                        series_name_format: 'job - {{job}}, {{env}} {{instance}}',
+                      },
+                    },
+                  },
+                },
+              ],
+              thresholds: {
+                steps: [
+                  // { name: 'Alert: Warning condition example', value: 0.4 },
+                  { name: 'Alert: Critical condition example', value: 0.5, color: 'red' },
+                ],
+              },
+              y_axis: {
+                // show: false,
+                label: 'Y Axis Label',
+                unit: { kind: 'Decimal', decimal_places: 1 },
+              },
+            },
+          },
+        },
+      },
       ImagePanelFirst: {
         kind: 'Panel',
         spec: {
@@ -70,39 +155,28 @@ export const dashboard: DashboardResource = {
           },
         },
       },
-      TimeSeriesEx: {
+      StatEx: {
         kind: 'Panel',
         spec: {
-          display: {
-            name: 'Time Series Panel Example',
-            description: 'Description text',
-          },
+          display: { name: 'Stat Panel Example' },
           plugin: {
-            kind: 'TimeSeriesChart',
+            kind: 'StatChart',
             spec: {
-              legend: { position: 'bottom' },
-              queries: [
-                {
-                  kind: 'TimeSeriesQuery',
-                  spec: {
-                    plugin: {
-                      kind: 'PrometheusTimeSeriesQuery',
-                      spec: {
-                        // "query": "node_load1{instance=~\"(demo.do.prometheus.io:9100)\",job='$job'}",
-                        query: 'up',
-                        series_name_format: 'job - {{job}}, {{env}} {{instance}}',
-                      },
+              query: {
+                kind: 'TimeSeriesQuery',
+                spec: {
+                  plugin: {
+                    kind: 'PrometheusTimeSeriesQuery',
+                    spec: {
+                      query: 'up{job=~"node|alertmanager"}',
+                      series_name_format: '{{job}} {{env}} {{instance}}',
                     },
                   },
                 },
-              ],
-              thresholds: {
-                steps: [
-                  { name: 'Alert: Warning condition example', value: 1.3 },
-                  { name: 'Alert: Critical condition example', value: 1.5 },
-                ],
               },
-              unit: { decimal_places: 1, kind: 'PercentDecimal' },
+              calculation: 'Sum',
+              unit: { kind: 'Decimal' },
+              // sparkline: {},
             },
           },
         },
@@ -113,6 +187,41 @@ export const dashboard: DashboardResource = {
         kind: 'Grid',
         spec: {
           display: { title: 'Row 1', collapse: { open: true } },
+          items: [
+            {
+              x: 0,
+              y: 0,
+              width: 12,
+              height: 8,
+              content: {
+                $ref: '#/spec/panels/TimeSeriesEx',
+              },
+            },
+            {
+              x: 12,
+              y: 0,
+              width: 8,
+              height: 8,
+              content: {
+                $ref: '#/spec/panels/GaugeEx',
+              },
+            },
+            {
+              x: 20,
+              y: 0,
+              width: 4,
+              height: 8,
+              content: {
+                $ref: '#/spec/panels/StatEx',
+              },
+            },
+          ],
+        },
+      },
+      {
+        kind: 'Grid',
+        spec: {
+          display: { title: 'Row 2', collapse: { open: true } },
           items: [
             {
               x: 0,
@@ -132,32 +241,6 @@ export const dashboard: DashboardResource = {
             //     $ref: '#/spec/panels/GaugeEx',
             //   },
             // },
-          ],
-        },
-      },
-      {
-        kind: 'Grid',
-        spec: {
-          display: { title: 'Row 2', collapse: { open: false } },
-          items: [
-            {
-              x: 0,
-              y: 0,
-              width: 12,
-              height: 8,
-              content: {
-                $ref: '#/spec/panels/TimeSeriesEx',
-              },
-            },
-            {
-              x: 16,
-              y: 0,
-              width: 12,
-              height: 8,
-              content: {
-                $ref: '#/spec/panels/GaugeEx',
-              },
-            },
           ],
         },
       },

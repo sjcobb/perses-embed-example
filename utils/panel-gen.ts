@@ -69,7 +69,7 @@ export function convertPredictionsToPersesDashboard(
     metadata: {
       version: 1,
       created_at: '',
-      name: 'Predictions Dashboard',
+      name: 'Covert Dashboard Example',
       project: '',
       updated_at: '',
     },

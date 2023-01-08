@@ -1,56 +1,59 @@
-import React from 'react';
-import { QueryParamProvider } from 'use-query-params';
-import { NextAdapter } from 'next-query-params';
-import { DashboardResource, DurationString, TimeRangeValue } from '@perses-dev/core';
-import { DashboardProvider, DatasourceStoreProvider, TemplateVariableProvider } from '@perses-dev/dashboards';
+import React, { useMemo } from 'react';
+import { useTheme } from '@mui/material';
+import { PluginRegistry } from '@perses-dev/plugin-system';
 import {
-  PluginRegistry,
-  TimeRangeProvider as PersesTimeRangeProvider,
-  useInitialTimeRange,
-} from '@perses-dev/plugin-system';
+  ChartsThemeProvider,
+  EChartsTheme,
+  generateChartsTheme,
+  PersesChartsTheme,
+  ErrorAlert,
+  ErrorBoundary,
+} from '@perses-dev/components';
 import { bundledPluginLoader } from './PersesPluginRegistry';
-import { useDatasourceApi } from './datasource-api';
 
-function TimeRangeProvider({
-  dashboardDuration,
-  children,
-}: {
-  dashboardDuration: DurationString;
-  children: React.ReactNode;
-}) {
-  const initialTimeRange: TimeRangeValue = useInitialTimeRange(dashboardDuration);
-  // const initialTimeRange: TimeRangeValue = { pastDuration: '1h' };
-  return (
-    <PersesTimeRangeProvider initialTimeRange={initialTimeRange} enabledURLParams={false}>
-      {children}
-    </PersesTimeRangeProvider>
-  );
-}
-
-type PersesDashboardProvidersProps = {
-  dashboard: DashboardResource;
+type PersesDashboardProps = {
   children: React.ReactNode;
 };
 
-export function PersesDashboardProviders({ dashboard, children }: PersesDashboardProvidersProps) {
-  const datasourceApi = useDatasourceApi();
+// app specific echarts option overrides
+const ECHARTS_THEME_OVERRIDES: EChartsTheme = {
+  // https://echarts.apache.org/en/theme-builder.html
+  color: ['#516b91', '#59c4e6', '#edafda', '#93b7e3', '#a5e7f0', '#cbb0e3'],
+  categoryAxis: {
+    splitLine: {
+      show: true,
+    },
+  },
+  valueAxis: {
+    // show: false,
+  },
+  // https://echarts.apache.org/en/option.html#series-line.type
+  line: {
+    showSymbol: false,
+    symbol: 'none',
+  },
+};
+
+export function PersesDashboardProviders({ children }: PersesDashboardProps) {
+  const muiTheme = useTheme();
+  // https://github.com/perses/perses/blob/main/ui/components/src/utils/theme-gen.ts
+  const chartsTheme: PersesChartsTheme = useMemo(() => {
+    return generateChartsTheme(muiTheme, ECHARTS_THEME_OVERRIDES);
+  }, [muiTheme]);
 
   return (
-    <PluginRegistry
-      pluginLoader={bundledPluginLoader}
-      defaultPluginKinds={{
-        Panel: 'TimeSeriesChart',
-      }}
-    >
-      <QueryParamProvider adapter={NextAdapter}>
-        <DatasourceStoreProvider dashboardResource={dashboard} datasourceApi={datasourceApi}>
-          <DashboardProvider initialState={{ dashboardResource: dashboard }}>
-            <TemplateVariableProvider initialVariableDefinitions={dashboard.spec.variables}>
-              <TimeRangeProvider dashboardDuration={dashboard.spec.duration}>{children}</TimeRangeProvider>
-            </TemplateVariableProvider>
-          </DashboardProvider>
-        </DatasourceStoreProvider>
-      </QueryParamProvider>
-    </PluginRegistry>
+    <ChartsThemeProvider chartsTheme={chartsTheme}>
+      <ErrorBoundary FallbackComponent={ErrorAlert}>
+        <PluginRegistry
+          pluginLoader={bundledPluginLoader}
+          defaultPluginKinds={{
+            Panel: 'TimeSeriesChart',
+            // Panel: 'GenerateImageCanvas',
+          }}
+        >
+          {children}
+        </PluginRegistry>
+      </ErrorBoundary>
+    </ChartsThemeProvider>
   );
 }

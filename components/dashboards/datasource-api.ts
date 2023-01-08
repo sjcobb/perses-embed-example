@@ -10,7 +10,7 @@ export function useDatasourceApi(): DatasourceStoreProviderProps['datasourceApi'
       if (selector.kind === 'PrometheusDatasource' && selector.name === undefined) {
         return {
           resource: datasource,
-          proxyUrl: '/data/update_proxy_here',
+          proxyUrl: undefined,
         };
       }
       return undefined;
@@ -43,7 +43,7 @@ const datasource: GlobalDatasource = {
     plugin: {
       kind: 'PrometheusDatasource',
       spec: {
-        direct_url: 'demo.do.prometheus.io:9100', // TODO: fix datasource, proxyUrl errors when using TimeSeriesChart panel
+        direct_url: 'https://prometheus.demo.do.prometheus.io',
       },
     },
   },

@@ -44,10 +44,10 @@ export const dashboard: DashboardResource = {
           },
         },
       },
-      GaugeExample: {
+      GaugeEx: {
         kind: 'Panel',
         spec: {
-          display: { name: 'Gauge Example' },
+          display: { name: 'Gauge Panel Example' },
           plugin: {
             kind: 'GaugeChart',
             spec: {
@@ -58,13 +58,51 @@ export const dashboard: DashboardResource = {
                   plugin: {
                     kind: 'PrometheusTimeSeriesQuery',
                     spec: {
-                      query: 'up',
+                      query: 'up{job=~"node|alertmanager"}',
+                      series_name_format: '{{job}} {{env}} {{instance}}',
                     },
                   },
                 },
               },
-              thresholds: { steps: [{ value: 0.2 }, { value: 0.35 }] },
-              unit: { kind: 'PercentDecimal' },
+              thresholds: { steps: [{ value: 70 }, { value: 90 }] },
+              unit: { kind: 'Percent' },
+            },
+          },
+        },
+      },
+      TimeSeriesEx: {
+        kind: 'Panel',
+        spec: {
+          display: {
+            name: 'Time Series Panel Example',
+            description: 'Description text',
+          },
+          plugin: {
+            kind: 'TimeSeriesChart',
+            spec: {
+              legend: { position: 'bottom' },
+              queries: [
+                {
+                  kind: 'TimeSeriesQuery',
+                  spec: {
+                    plugin: {
+                      kind: 'PrometheusTimeSeriesQuery',
+                      spec: {
+                        // "query": "node_load1{instance=~\"(demo.do.prometheus.io:9100)\",job='$job'}",
+                        query: 'up',
+                        series_name_format: 'job - {{job}}, {{env}} {{instance}}',
+                      },
+                    },
+                  },
+                },
+              ],
+              thresholds: {
+                steps: [
+                  { name: 'Alert: Warning condition example', value: 1.3 },
+                  { name: 'Alert: Critical condition example', value: 1.5 },
+                ],
+              },
+              unit: { decimal_places: 1, kind: 'PercentDecimal' },
             },
           },
         },
@@ -91,9 +129,35 @@ export const dashboard: DashboardResource = {
             //   width: 8,
             //   height: 8,
             //   content: {
-            //     $ref: '#/spec/panels/GaugeExample',
+            //     $ref: '#/spec/panels/GaugeEx',
             //   },
             // },
+          ],
+        },
+      },
+      {
+        kind: 'Grid',
+        spec: {
+          display: { title: 'Row 2', collapse: { open: false } },
+          items: [
+            {
+              x: 0,
+              y: 0,
+              width: 12,
+              height: 8,
+              content: {
+                $ref: '#/spec/panels/TimeSeriesEx',
+              },
+            },
+            {
+              x: 16,
+              y: 0,
+              width: 12,
+              height: 8,
+              content: {
+                $ref: '#/spec/panels/GaugeEx',
+              },
+            },
           ],
         },
       },

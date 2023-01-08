@@ -12,41 +12,48 @@
 // limitations under the License.
 
 import React, { useMemo } from 'react';
-import { EChart, useChartsTheme, UnitOptions } from '@perses-dev/components';
+import { EChart, EChartsValues, useChartsTheme, UnitOptions } from '@perses-dev/components';
 import { use, EChartsCoreOption } from 'echarts/core';
-import { ScatterChart as EChartsScatterChart, GaugeSeriesOption } from 'echarts/charts';
+import { ScatterChart as EChartsScatterChart, ScatterSeriesOption } from 'echarts/charts';
 import { GridComponent, TitleComponent, TooltipComponent } from 'echarts/components';
 import { CanvasRenderer } from 'echarts/renderers';
 // import { formatValue,  } from '../model/units';
 
 use([EChartsScatterChart, GridComponent, TitleComponent, TooltipComponent, CanvasRenderer]);
 
-export type ScatterChartValue = number | null | undefined;
+// // // export type ScatterChartValues = number | null | undefined;
+// // export type ScatterChartValues = number | null | '-';
+// export interface ScatterSeries extends Omit<ScatterSeriesOption, 'data'> {
+//   data: EChartsValues[];
+// }
 
-export type ScatterSeries = {
-  value: ScatterChartValue;
-  label: string;
-};
+export interface ScatterSeries extends Omit<ScatterSeriesOption, 'data'> {
+  // data: EChartsValues[];
+  data: any;
+}
 
-interface ScatterChartProps {
+interface ScatterplotProps {
   width: number;
   height: number;
-  data: ScatterSeries;
+  data: ScatterSeries[];
+  xAxis?: EChartsCoreOption['xAxis'];
   unit: UnitOptions;
 }
 
-export function ScatterChart(props: ScatterChartProps) {
-  const { width, height, data, unit } = props;
+export function Scatterplot(props: ScatterplotProps) {
+  const { width, height, data, unit, xAxis } = props;
   const chartsTheme = useChartsTheme();
 
   // useDeepMemo ensures value size util does not rerun everytime you hover on the chart
   const option: EChartsCoreOption = useMemo(() => {
-    if (data.value === undefined || data.value === null) return chartsTheme.noDataOption;
+    // if (data.value === undefined || data.value === null) return chartsTheme.noDataOption;
+    if (!data) return chartsTheme.noDataOption;
     return {
-      // series: data.timeSeries,
       series: data,
       xAxis: {
-        type: 'category',
+        // TODO: use 'time' instead of 'category', see: https://github.com/perses/perses/pull/227/files#diff-67806350a5015bbdcfc58a2202349c96b8af3d4b3887b15d7725738c1b134145
+        type: 'time',
+        // type: 'category',
         // data: data.xAxis,
         axisLabel: {
           // formatter: (value: number) => {

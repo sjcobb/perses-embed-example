@@ -11,135 +11,60 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import type { GaugeSeriesOption } from 'echarts';
-import { merge } from 'lodash-es';
-import { useTimeSeriesQuery, PanelProps, CalculationsMap } from '@perses-dev/plugin-system';
-import { ScatterChart, GaugeSeries } from '@perses-dev/components';
-import { Box, Skeleton, Stack } from '@mui/material';
+import { useTimeSeriesQuery, PanelProps } from '@perses-dev/plugin-system';
+import { Box, Skeleton } from '@mui/material';
 import { useMemo } from 'react';
-import { convertThresholds, defaultThresholdInput } from '../../model/thresholds';
-import { useSuggestedStepMs } from '../../model/time';
-import {
-  ScatterChartOptions,
-  DEFAULT_UNIT,
-  DEFAULT_MAX_PERCENT,
-  DEFAULT_MAX_PERCENT_DECIMAL,
-} from './gauge-chart-model';
-
-const EMPTY_GAUGE_SERIES: GaugeSeries = { label: '', value: null };
-const GAUGE_MIN_WIDTH = 90;
-const PANEL_PADDING_OFFSET = 20;
+import { ScatterChartOptions } from './scatter-chart-model';
+import { Scatterplot, ScatterSeries } from './Scatterplot';
 
 export type ScatterChartPanelProps = PanelProps<ScatterChartOptions>;
 
 export function ScatterChartPanel(props: ScatterChartPanelProps) {
-  const { spec: pluginSpec, contentDimensions } = props;
-  const { query, calculation, max } = pluginSpec;
-
-  // ensures all default unit properties set if undef
-  const unit = merge({}, DEFAULT_UNIT, pluginSpec.unit);
-
-  const thresholds = pluginSpec.thresholds ?? defaultThresholdInput;
-
-  const suggestedStepMs = useSuggestedStepMs(contentDimensions?.width);
+  const {
+    spec: { query, unit },
+    contentDimensions,
+  } = props;
+  // const suggestedStepMs = useSuggestedStepMs(contentDimensions?.width);
+  const suggestedStepMs = 15000;
   const { data, isLoading, error } = useTimeSeriesQuery(query, { suggestedStepMs });
 
-  const gaugeData: GaugeSeries[] = useMemo(() => {
+  const scatterData: ScatterSeries[] = useMemo(() => {
     if (data === undefined) {
       return [];
     }
-    const seriesData: GaugeSeries[] = [];
+    const seriesData: ScatterSeries[] = [];
     for (const timeSeries of data.series) {
-      const calculate = CalculationsMap[calculation];
-      const series = {
-        value: calculate(Array.from(timeSeries.values)),
-        label: timeSeries.formattedName ?? '',
+      const formattedSeriesName = timeSeries.formattedName ?? timeSeries.name;
+      const timeSeriesValues = [['timestamp', 'value'], ...timeSeries.values];
+      const scatterSeries = {
+        type: 'scatter',
+        name: formattedSeriesName,
+        data: timeSeriesValues,
+        // color: getRandomColor(name), // use full series name as generated color seed (must match param in legendItems)
+        // symbolSize: pointRadius,
       };
-      seriesData.push(series);
+      seriesData.push(scatterSeries);
     }
     return seriesData;
-  }, [data, calculation]);
+  }, [data]);
 
   if (error) throw error;
 
   if (contentDimensions === undefined) return null;
 
-  // TODO: remove Skeleton, add loading state to match mockups
   if (isLoading === true) {
     return (
-      <Skeleton
-        sx={{ margin: '0 auto' }}
-        variant="circular"
-        width={contentDimensions.width > contentDimensions.height ? contentDimensions.height : contentDimensions.width}
-        height={contentDimensions.height}
-      />
-    );
-  }
-
-  // needed for end value of last threshold color segment
-  let thresholdMax = max;
-  if (thresholdMax === undefined) {
-    if (unit.kind === 'Percent') {
-      thresholdMax = DEFAULT_MAX_PERCENT;
-    } else {
-      thresholdMax = DEFAULT_MAX_PERCENT_DECIMAL;
-    }
-  }
-  const axisLineColors = convertThresholds(thresholds, unit, thresholdMax);
-  const axisLine: GaugeSeriesOption['axisLine'] = {
-    show: true,
-    lineStyle: {
-      width: 5,
-      color: axisLineColors,
-    },
-  };
-
-  // no data message handled inside chart component
-  if (gaugeData.length === 0) {
-    return (
-      <ScatterChart
+      <Box
+        sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         width={contentDimensions.width}
         height={contentDimensions.height}
-        data={EMPTY_GAUGE_SERIES}
-        unit={unit}
-        axisLine={axisLine}
-        max={thresholdMax}
-      />
+      >
+        <Skeleton variant="text" width={contentDimensions.width - 20} height={contentDimensions.height / 2} />
+      </Box>
     );
-  }
-
-  // accounts for showing a separate chart for each time series
-  let chartWidth = contentDimensions.width / gaugeData.length - PANEL_PADDING_OFFSET;
-  if (chartWidth < GAUGE_MIN_WIDTH && gaugeData.length > 1) {
-    // enables horizontal scroll when charts overflow outside of panel
-    chartWidth = GAUGE_MIN_WIDTH;
   }
 
   return (
-    <Stack
-      direction="row"
-      spacing={2}
-      justifyContent="left"
-      alignItems="center"
-      sx={{
-        // so scrollbar only shows when necessary
-        overflowX: gaugeData.length > 1 ? 'scroll' : 'auto',
-      }}
-    >
-      {gaugeData.map((series, seriesIndex) => {
-        return (
-          <Box key={`gauge-series-${seriesIndex}`}>
-            <ScatterChart
-              width={chartWidth}
-              height={contentDimensions.height}
-              data={series}
-              unit={unit}
-              axisLine={axisLine}
-              max={thresholdMax}
-            />
-          </Box>
-        );
-      })}
-    </Stack>
+    <Scatterplot width={contentDimensions.width} height={contentDimensions.height} data={scatterData} unit={unit} />
   );
 }

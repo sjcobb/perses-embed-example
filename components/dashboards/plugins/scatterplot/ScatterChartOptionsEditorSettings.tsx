@@ -30,7 +30,7 @@ import {
   DEFAULT_UNIT,
   DEFAULT_MAX_PERCENT,
   DEFAULT_MAX_PERCENT_DECIMAL,
-} from './gauge-chart-model';
+} from './scatter-chart-model';
 
 export function ScatterChartOptionsEditorSettings(props: ScatterChartOptionsEditorProps) {
   const { onChange, value } = props;

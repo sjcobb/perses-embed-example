@@ -19,7 +19,7 @@ import {
   TimeSeriesQueryEditorProps,
 } from '@perses-dev/plugin-system';
 import { produce } from 'immer';
-import { ScatterChartOptions } from './gauge-chart-model';
+import { ScatterChartOptions } from './scatter-chart-model';
 import { ScatterChartOptionsEditorSettings } from './ScatterChartOptionsEditorSettings';
 
 export type ScatterChartOptionsEditorProps = OptionsEditorProps<ScatterChartOptions>;

@@ -177,6 +177,30 @@ export const dashboardSample: DashboardResource = {
           },
         },
       },
+      ScatterEx: {
+        kind: 'Panel',
+        spec: {
+          display: { name: 'Scatterplot Panel Example' },
+          plugin: {
+            kind: 'ScatterChart',
+            spec: {
+              query: {
+                kind: 'TimeSeriesQuery',
+                spec: {
+                  plugin: {
+                    kind: 'PrometheusTimeSeriesQuery',
+                    spec: {
+                      query: 'up{job=~"node|alertmanager"}',
+                      series_name_format: '{{job}} {{env}} {{instance}}',
+                    },
+                  },
+                },
+              },
+              unit: { kind: 'Decimal' },
+            },
+          },
+        },
+      },
     },
     layouts: [
       {
@@ -209,6 +233,15 @@ export const dashboardSample: DashboardResource = {
               height: 8,
               content: {
                 $ref: '#/spec/panels/StatEx',
+              },
+            },
+            {
+              x: 0,
+              y: 8,
+              width: 8,
+              height: 8,
+              content: {
+                $ref: '#/spec/panels/ScatterEx',
               },
             },
           ],

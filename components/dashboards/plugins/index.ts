@@ -1,4 +1,5 @@
 import { GenerateImageCanvas } from './generate-image-canvas';
+import { ScatterChart } from './scatterplot';
 import { ImageQuery } from './image-query';
 
-export { GenerateImageCanvas, ImageQuery };
+export { GenerateImageCanvas, ScatterChart, ImageQuery };

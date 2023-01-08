@@ -12,7 +12,7 @@
 // limitations under the License.
 
 import { PanelPlugin } from '@perses-dev/plugin-system';
-import { createInitialScatterChartOptions, ScatterChartOptions } from './gauge-chart-model';
+import { createInitialScatterChartOptions, ScatterChartOptions } from './scatter-chart-model';
 import { ScatterChartOptionsEditor } from './ScatterChartOptionsEditor';
 import { ScatterChartPanel } from './ScatterChartPanel';
 

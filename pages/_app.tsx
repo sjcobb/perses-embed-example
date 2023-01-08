@@ -1,12 +1,38 @@
+import { createTheme, ThemeProvider } from '@mui/material';
+import { Header } from '../components';
 import '../styles/globals.css';
 import '../theme';
-// import '@fontsource/lato/300.css';
-// import '@fontsource/lato/400.css';
-// import '@fontsource/lato/700.css';
-// import '@fontsource/lato/900.css';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />;
+  const theme = createTheme({
+    typography: {
+      fontFamily: '"Lato", Verdana, sans-serif',
+      fontSize: 11,
+      h1: {
+        fontSize: '1.4rem',
+      },
+      h2: {
+        fontSize: '1.2rem',
+      },
+      h3: {
+        fontSize: '1.05rem',
+      },
+      h4: {
+        fontSize: '1.0rem',
+      },
+      body1: {
+        fontSize: '0.875rem',
+        fontWeight: 400,
+        lineHeight: '20px',
+      },
+    },
+  });
+  return (
+    <ThemeProvider theme={theme}>
+      <Header />
+      <Component {...pageProps} />
+    </ThemeProvider>
+  );
 }
 
 export default MyApp;

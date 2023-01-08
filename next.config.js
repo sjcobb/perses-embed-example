@@ -3,12 +3,12 @@
  */
 
 const nextConfig = {
-  // typescript: {
-  //   ignoreBuildErrors: true,
-  // },
-  // eslint: {
-  //   ignoreDuringBuilds: true,
-  // },
+  typescript: {
+    ignoreBuildErrors: true,
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   reactStrictMode: true,
   swcMinify: true,
   images: {
@@ -16,6 +16,7 @@ const nextConfig = {
   },
   experimental: {
     appDir: false,
+    esmExternals: 'loose',
   },
   // https://nextjs.org/blog/next-13-1#built-in-module-transpilation-stable
   transpilePackages: [

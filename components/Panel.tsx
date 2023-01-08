@@ -1,8 +1,14 @@
-import { ChartsThemeProvider, LineChart, PersesChartsTheme } from '@perses-dev/components';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import { LineChart } from '@perses-dev/components';
 import { formatMetrics } from '../utils';
 
+/**
+ * Panel Embed Example
+ * https://github.com/perses/perses/blob/main/ui/components/README.md
+ */
+
 interface PanelProps {
+  width?: number;
   height?: number;
 }
 
@@ -41,31 +47,26 @@ const mockData = [
   },
 ];
 
-const CHARTS_THEME: PersesChartsTheme = {
-  echartsTheme: {},
-  noDataOption: {},
-  sparkline: {
-    width: 1,
-    color: '#000000',
-  },
-};
-
-export function Panel({ height }: PanelProps) {
+export function Panel({ width = 600, height = 400 }: PanelProps) {
   const formattedData = formatMetrics(mockData);
   const gridOverrides = {
-    top: 60,
-    bottom: 50,
+    top: 30,
+    bottom: 40,
   };
   const legendOverrides = {
     type: 'scroll',
     bottom: 0,
   };
   return (
-    <ChartsThemeProvider chartsTheme={CHARTS_THEME}>
-      <Box sx={{ width: '600px' }}>
-        <h2>Panel Test</h2>
-        <LineChart data={formattedData} height={400} grid={gridOverrides} legend={legendOverrides} />
+    <Box sx={{ width, padding: 1 }}>
+      <Box
+        sx={(theme) => ({
+          padding: theme.spacing(1, 0, 0),
+        })}
+      >
+        <Typography variant="h2">Panel Example</Typography>
       </Box>
-    </ChartsThemeProvider>
+      <LineChart data={formattedData} height={height} grid={gridOverrides} legend={legendOverrides} />
+    </Box>
   );
 }

@@ -6,12 +6,12 @@ export default function About() {
   return (
     <Box>
       <Head>
-        <title>Perses Embed Example Dashboard</title>
+        <title>Perses Embed Example App</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
       <Stack>
         <Link href="/dashboard">Perses Embedded Dashboard Example</Link>
-        <Link href="/paint">Start painting with Stable Diffusion</Link>
+        <Link href="/demo">Perses Components Demo</Link>
       </Stack>
     </Box>
   );

@@ -1,101 +1,46 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { QueryParamProvider } from 'use-query-params';
+import { NextAdapter } from 'next-query-params';
 import { ViewDashboard } from '@perses-dev/dashboards';
-import { DashboardResource } from '@perses-dev/core';
-import { Box, createTheme, ThemeProvider } from '@mui/material';
+import { Box } from '@mui/material';
 import { useDatasourceApi } from '../components/dashboards/datasource-api';
-import { PersesDashboard } from '../components/dashboards/PersesDashboard';
-
-export const dashboard: DashboardResource = {
-  kind: 'Dashboard',
-  metadata: {
-    name: 'Predictions Dashboard',
-    created_at: '',
-    updated_at: '',
-    project: '',
-    version: 0,
-  },
-  spec: {
-    datasources: {},
-    duration: '6h',
-    variables: [],
-    panels: {
-      ImagePanelFirst: {
-        kind: 'Panel',
-        spec: {
-          display: {
-            name: 'First Generated Image',
-          },
-          plugin: {
-            kind: 'GenerateImageCanvas',
-            spec: {
-              saved_image: null,
-              query: {
-                kind: 'TimeSeriesQuery',
-                spec: {
-                  plugin: {
-                    kind: 'ImageQuery',
-                    spec: {
-                      query: 'magazine cover of two otters playing basketball, hyper detailed, award winning',
-                      query_enabled: false,
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-    layouts: [
-      {
-        kind: 'Grid',
-        spec: {
-          display: { title: 'Row 1', collapse: { open: true } },
-          items: [
-            {
-              x: 0,
-              y: 0,
-              width: 24,
-              height: 18,
-              content: {
-                $ref: '#/spec/panels/ImagePanelFirst',
-              },
-            },
-          ],
-        },
-      },
-    ],
-  },
-};
+import { PersesDashboardProviders } from '../components/dashboards/PersesDashboardProviders';
+import { dashboardSample } from '../data/dashboard-sample';
 
 export default function Dashboard() {
   const datasourceApi = useDatasourceApi();
 
-  const theme = createTheme({
-    typography: {
-      fontFamily: '"Lato", sans-serif',
-      fontSize: 11,
-      h2: {
-        fontSize: '1.2rem',
-      },
-      h3: {
-        fontSize: '1.05rem',
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnWindowFocus: false,
+        retry: 0,
       },
     },
   });
 
   return (
-    <ThemeProvider theme={theme}>
-      <Box>
-        <PersesDashboard>
-          <ViewDashboard
-            dashboardResource={dashboard}
-            datasourceApi={datasourceApi}
-            isReadonly={true}
-            initialVariableIsSticky={false}
-            // enabledURLParams={false}
-          />
-        </PersesDashboard>
-      </Box>
-    </ThemeProvider>
+    <QueryClientProvider client={queryClient}>
+      <QueryParamProvider adapter={NextAdapter}>
+        <Box>
+          <PersesDashboardProviders>
+            <ViewDashboard
+              dashboardResource={dashboardSample}
+              datasourceApi={datasourceApi}
+              // dashboardTitleComponent={
+              //   <DashboardBreadcrumbs
+              //     dashboardName={data.spec.display ? data.spec.display.name : data.metadata.name}
+              //     dashboardProject={data.metadata.project}
+              //   />
+              // }
+              // onSave={updateDashboard}
+              initialVariableIsSticky={false}
+              isReadonly={true}
+              // enabledURLParams={false}
+            />
+          </PersesDashboardProviders>
+        </Box>
+      </QueryParamProvider>
+    </QueryClientProvider>
   );
 }

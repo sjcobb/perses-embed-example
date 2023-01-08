@@ -1,7 +1,5 @@
 import { TimeSeriesQueryDefinition } from '@perses-dev/core';
 
-// export type GenerateImageCanvasOptions = Record<string, object>;
-
 export interface GenerateImageCanvasOptions {
   query: TimeSeriesQueryDefinition;
   saved_image?: string;

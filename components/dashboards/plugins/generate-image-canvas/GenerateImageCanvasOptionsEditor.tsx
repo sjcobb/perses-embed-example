@@ -2,7 +2,6 @@ import React from 'react';
 import { produce } from 'immer';
 import { GenerateImageCanvasOptions } from './generate-image-canvas-model';
 import { Button, Typography, Stack } from '@mui/material';
-// import { TimeSeriesQueryDefinition, UnknownSpec } from '@perses-dev/core';
 import { JSONEditor } from '@perses-dev/components';
 import {
   OptionsEditorProps,
@@ -11,7 +10,6 @@ import {
   TimeSeriesQueryEditorProps,
 } from '@perses-dev/plugin-system';
 import { useUpdateSavedImage } from './save-image';
-// import { ImageQuerySpec } from '../image-query/image-query-model';
 
 export type GenerateImageCanvasOptionsEditorProps = OptionsEditorProps<GenerateImageCanvasOptions>;
 
@@ -37,6 +35,7 @@ export function GenerateImageCanvasOptionsEditor(props: GenerateImageCanvasOptio
     onChange(
       produce(value, (draft: GenerateImageCanvasOptions) => {
         draft.saved_image = imageURL;
+        draft.query.spec.plugin.spec.query_enabled = false;
       })
     );
   }

@@ -1,9 +1,4 @@
-// // // const addBackgroundToPNG = require("lib/add-background-to-png");
-// // import addBackgroundToPNG from "lib/add-background-to-png";
-// const PNG = require("pngjs").PNG;
-// // const dataUriToBuffer = require("lib/data-uri-to-buffer");
-// import { dataUriToBuffer } from "lib/add-background-to-png";
-// import bufferToDataUrl from "buffer-to-data-url";
+// TBD - Image generation
 
 const PNG = require('pngjs').PNG;
 
@@ -21,14 +16,6 @@ function addBackgroundToPNG(dataUrl) {
 
   const png = PNG.sync.read(dataUriToBuffer(dataUrl));
   const buffer = PNG.sync.write(png, options);
-
-  // save to a file on disk for testing
-  // const fs = require("fs");
-  // const path = require("path");
-  // const filename = dataUrl.substring(dataUrl.length - 10) + ".png";
-  // fs.writeFileSync(path.join(__dirname, filename), buffer);
-  // console.log(path.join(__dirname, filename));
-
   return bufferToDataUrl('image/png', buffer);
 }
 

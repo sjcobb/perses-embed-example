@@ -28,10 +28,7 @@ const ECHARTS_THEME_OVERRIDES: EChartsTheme = {
     // show: false,
   },
   // https://echarts.apache.org/en/option.html#series-line.type
-  line: {
-    showSymbol: false,
-    symbol: 'none',
-  },
+  line: {},
 };
 
 export function PersesDashboardProviders({ children }: PersesDashboardProps) {

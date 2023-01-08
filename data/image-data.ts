@@ -1,5 +1,5 @@
-// TODO: fix ERR
-// - 1:1  Warning: Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+// Test Data - Replicate API (Stable Diffusion)
+
 export const testData = {
   series: [], // TODO: new query plugin type in runtime that does not require series
   completed_at: null,

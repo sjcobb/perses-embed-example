@@ -103,7 +103,7 @@ export const dashboardSample: DashboardResource = {
         kind: 'Panel',
         spec: {
           display: {
-            name: 'First Generated Image',
+            name: 'Image Generation Panel (Stable Diffusion)',
           },
           plugin: {
             kind: 'GenerateImageCanvas',
@@ -177,12 +177,36 @@ export const dashboardSample: DashboardResource = {
           },
         },
       },
+      ScatterEx: {
+        kind: 'Panel',
+        spec: {
+          display: { name: 'Scatterplot Panel Example' },
+          plugin: {
+            kind: 'ScatterChart',
+            spec: {
+              query: {
+                kind: 'TimeSeriesQuery',
+                spec: {
+                  plugin: {
+                    kind: 'PrometheusTimeSeriesQuery',
+                    spec: {
+                      query:
+                        'avg without (cpu)(rate(node_cpu_seconds_total{job=~"node|alertmanager",instance="demo.do.prometheus.io:9100",mode=~"user|idle"}[30m]))',
+                    },
+                  },
+                },
+              },
+              unit: { kind: 'Decimal' },
+            },
+          },
+        },
+      },
     },
     layouts: [
       {
         kind: 'Grid',
         spec: {
-          display: { title: 'Row 1', collapse: { open: true } },
+          display: { title: 'Core Panel Plugins', collapse: { open: true } },
           items: [
             {
               x: 0,
@@ -217,26 +241,26 @@ export const dashboardSample: DashboardResource = {
       {
         kind: 'Grid',
         spec: {
-          display: { title: 'Row 2', collapse: { open: false } },
+          display: { title: 'Custom Panel Plugins', collapse: { open: false } },
           items: [
             {
               x: 0,
               y: 0,
-              width: 16,
-              height: 12,
+              width: 14,
+              height: 10,
               content: {
                 $ref: '#/spec/panels/ImagePanelFirst',
               },
             },
-            // {
-            //   x: 16,
-            //   y: 0,
-            //   width: 8,
-            //   height: 8,
-            //   content: {
-            //     $ref: '#/spec/panels/GaugeEx',
-            //   },
-            // },
+            {
+              x: 14,
+              y: 0,
+              width: 10,
+              height: 10,
+              content: {
+                $ref: '#/spec/panels/ScatterEx',
+              },
+            },
           ],
         },
       },

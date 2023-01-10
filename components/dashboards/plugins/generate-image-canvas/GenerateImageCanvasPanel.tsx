@@ -27,7 +27,9 @@ export function GenerateImageCanvasPanel(props: PanelProps<GenerateImageCanvasOp
     >
       {isValidHttpUrl(savedImage) && (
         <>
-          <Typography variant="h3">Prompt: {promptHeader}</Typography>
+          <Typography variant="h3" sx={{ mb: 1 }}>
+            Prompt: {promptHeader}
+          </Typography>
           <img src={savedImage} alt={query.toString() ?? 'generated image'} />
         </>
       )}

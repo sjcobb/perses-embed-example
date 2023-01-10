@@ -1,21 +1,10 @@
-// Copyright 2023 The Perses Authors
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 import { useTimeSeriesQuery, PanelProps } from '@perses-dev/plugin-system';
 import { Box, Skeleton } from '@mui/material';
+import { ScatterSeriesOption } from 'echarts/charts';
 import { useMemo } from 'react';
 import { ScatterChartOptions } from './scatter-chart-model';
-import { Scatterplot, ScatterSeries } from './Scatterplot';
+import { Scatterplot } from './Scatterplot';
+import { useSuggestedStepMs } from './utils';
 
 export type ScatterChartPanelProps = PanelProps<ScatterChartOptions>;
 
@@ -24,24 +13,22 @@ export function ScatterChartPanel(props: ScatterChartPanelProps) {
     spec: { query, unit },
     contentDimensions,
   } = props;
-  // const suggestedStepMs = useSuggestedStepMs(contentDimensions?.width);
-  const suggestedStepMs = 15000;
+  const suggestedStepMs = useSuggestedStepMs(contentDimensions?.width) * 10; // temp calc for demo
   const { data, isLoading, error } = useTimeSeriesQuery(query, { suggestedStepMs });
 
-  const scatterData: ScatterSeries[] = useMemo(() => {
+  const scatterData = useMemo(() => {
     if (data === undefined) {
       return [];
     }
-    const seriesData: ScatterSeries[] = [];
+    const seriesData: ScatterSeriesOption[] = [];
     for (const timeSeries of data.series) {
       const formattedSeriesName = timeSeries.formattedName ?? timeSeries.name;
       const timeSeriesValues = [['timestamp', 'value'], ...timeSeries.values];
-      const scatterSeries = {
-        type: 'scatter',
+      const scatterSeries: ScatterSeriesOption = {
+        type: 'scatter', // https://echarts.apache.org/en/option.html#series-scatter.type
         name: formattedSeriesName,
         data: timeSeriesValues,
-        // color: getRandomColor(name), // use full series name as generated color seed (must match param in legendItems)
-        // symbolSize: pointRadius,
+        symbolSize: 4,
       };
       seriesData.push(scatterSeries);
     }

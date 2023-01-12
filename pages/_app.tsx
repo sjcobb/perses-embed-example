@@ -6,7 +6,8 @@ import '../theme';
 function MyApp({ Component, pageProps }) {
   const theme = createTheme({
     typography: {
-      fontFamily: '"Lato", Verdana, sans-serif',
+      fontFamily: 'Georgia, serif, Verdana',
+      // fontFamily: '"Lato", Verdana, sans-serif',
       fontSize: 11,
       h1: {
         fontSize: '1.4rem',

@@ -19,13 +19,45 @@ type PersesDashboardProps = {
 const ECHARTS_THEME_OVERRIDES: EChartsTheme = {
   // https://echarts.apache.org/en/theme-builder.html
   color: ['#516b91', '#59c4e6', '#edafda', '#93b7e3', '#a5e7f0', '#cbb0e3'],
+  textStyle: {
+    // color: 'yellow',
+    fontFamily: 'Georgia',
+    // fontFamily: 'sans-serif',
+  },
   categoryAxis: {
+    axisLine: {
+      // https://echarts.apache.org/en/option.html#xAxis.axisLine.lineStyle
+      lineStyle: {
+        color: '#000',
+        width: 4,
+      },
+    },
     splitLine: {
       show: true,
+      lineStyle: {
+        // color: '#000',
+        width: 2,
+        opacity: 0.8,
+      },
     },
   },
   valueAxis: {
     // show: false,
+    axisLine: {
+      show: true,
+      lineStyle: {
+        color: '#000',
+        width: 4,
+      },
+    },
+    splitLine: {
+      show: true,
+      lineStyle: {
+        color: '#000',
+        width: 1,
+        opacity: 0.8,
+      },
+    },
   },
   // https://echarts.apache.org/en/option.html#series-line.type
   line: {},

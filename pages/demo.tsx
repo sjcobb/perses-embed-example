@@ -7,6 +7,11 @@ import { Panel } from '../components';
 const ECHARTS_THEME_OVERRIDES: EChartsTheme = {
   // https://echarts.apache.org/en/theme-builder.html
   color: ['#516b91', '#59c4e6', '#edafda', '#93b7e3', '#a5e7f0', '#cbb0e3'],
+  textStyle: {
+    color: '#000000',
+    fontFamily: 'Georgia',
+    fontSize: 12,
+  },
   categoryAxis: {
     splitLine: {
       show: true,

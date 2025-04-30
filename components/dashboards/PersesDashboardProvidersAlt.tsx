@@ -40,6 +40,7 @@ export function PersesDashboardProvidersAlt({ dashboard, children }: PersesDashb
       pluginLoader={bundledPluginLoader}
       defaultPluginKinds={{
         Panel: 'TimeSeriesChart',
+        TimeSeriesQuery: 'PrometheusTimeSeriesQuery',
       }}
     >
       <QueryParamProvider adapter={NextAdapter}>

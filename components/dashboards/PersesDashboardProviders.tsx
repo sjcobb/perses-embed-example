@@ -2,7 +2,7 @@ import React, { useMemo } from 'react';
 import { useTheme } from '@mui/material';
 import { PluginRegistry } from '@perses-dev/plugin-system';
 import {
-  ChartsThemeProvider,
+  ChartsProvider,
   EChartsTheme,
   generateChartsTheme,
   PersesChartsTheme,
@@ -39,7 +39,7 @@ export function PersesDashboardProviders({ children }: PersesDashboardProps) {
   }, [muiTheme]);
 
   return (
-    <ChartsThemeProvider chartsTheme={chartsTheme}>
+    <ChartsProvider chartsTheme={chartsTheme}>
       <ErrorBoundary FallbackComponent={ErrorAlert}>
         <PluginRegistry
           pluginLoader={bundledPluginLoader}
@@ -51,6 +51,6 @@ export function PersesDashboardProviders({ children }: PersesDashboardProps) {
           {children}
         </PluginRegistry>
       </ErrorBoundary>
-    </ChartsThemeProvider>
+    </ChartsProvider>
   );
 }

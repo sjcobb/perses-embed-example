@@ -19,12 +19,7 @@ function TimeRangeProvider({
   children: React.ReactNode;
 }) {
   const initialTimeRange: TimeRangeValue = useInitialTimeRange(dashboardDuration);
-  // const initialTimeRange: TimeRangeValue = { pastDuration: '1h' };
-  return (
-    <PersesTimeRangeProvider initialTimeRange={initialTimeRange} enabledURLParams={false}>
-      {children}
-    </PersesTimeRangeProvider>
-  );
+  return <PersesTimeRangeProvider timeRange={initialTimeRange}>{children}</PersesTimeRangeProvider>;
 }
 
 type PersesDashboardProvidersProps = {

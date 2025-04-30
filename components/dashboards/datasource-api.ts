@@ -1,22 +1,30 @@
-import { GlobalDatasource } from '@perses-dev/core';
+import { GlobalDatasourceResource, DatasourceResource } from '@perses-dev/core';
 import { DatasourceStoreProviderProps } from '@perses-dev/dashboards';
+
+const fakeDatasource: GlobalDatasourceResource = {
+  kind: 'GlobalDatasource',
+  metadata: { name: 'hello' },
+  spec: {
+    default: true,
+    plugin: {
+      kind: 'PrometheusDatasource',
+      spec: {
+        directUrl: 'https://prometheus.demo.do.prometheus.io',
+      },
+    },
+  },
+};
 
 export function useDatasourceApi(): DatasourceStoreProviderProps['datasourceApi'] {
   return {
     getDatasource: async (/*project, selector*/) => {
       return undefined;
     },
-    getGlobalDatasource: async (selector) => {
-      if (selector.kind === 'PrometheusDatasource' && selector.name === undefined) {
-        return {
-          resource: datasource,
-          proxyUrl: undefined,
-        };
-      }
-      return undefined;
+    getGlobalDatasource(): Promise<GlobalDatasourceResource | undefined> {
+      return Promise.resolve(fakeDatasource);
     },
-    listDatasources: async (/*project, pluginKind*/) => {
-      return [];
+    listDatasources(): Promise<DatasourceResource[]> {
+      return Promise.resolve([]);
     },
     listGlobalDatasources: async (pluginKind) => {
       if (pluginKind === datasource.spec.plugin.kind) {
@@ -27,12 +35,12 @@ export function useDatasourceApi(): DatasourceStoreProviderProps['datasourceApi'
   };
 }
 
-const datasource: GlobalDatasource = {
+const datasource: GlobalDatasourceResource = {
   kind: 'GlobalDatasource',
   metadata: {
     name: 'PrometheusDemo',
-    created_at: '',
-    updated_at: '',
+    createdAt: '',
+    updatedAt: '',
     version: 0,
   },
   spec: {
@@ -43,7 +51,7 @@ const datasource: GlobalDatasource = {
     plugin: {
       kind: 'PrometheusDatasource',
       spec: {
-        direct_url: 'https://prometheus.demo.do.prometheus.io',
+        directUrl: 'https://prometheus.demo.do.prometheus.io',
       },
     },
   },

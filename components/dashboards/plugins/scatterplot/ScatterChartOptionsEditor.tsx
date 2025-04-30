@@ -2,8 +2,8 @@ import { JSONEditor } from '@perses-dev/components';
 import {
   OptionsEditorProps,
   OptionsEditorTabs,
-  TimeSeriesQueryEditor,
-  TimeSeriesQueryEditorProps,
+  MultiQueryEditor,
+  MultiQueryEditorProps,
 } from '@perses-dev/plugin-system';
 import { produce } from 'immer';
 import { ScatterChartOptions } from './scatter-chart-model';
@@ -18,7 +18,7 @@ export function ScatterChartOptionsEditor(props: ScatterChartOptionsEditorProps)
   const { onChange, value } = props;
   const { query } = value;
 
-  const handleQueryChange: TimeSeriesQueryEditorProps['onChange'] = (next) => {
+  const handleQueryChange: MultiQueryEditorProps['onChange'] = (next) => {
     onChange(
       produce(value, (draft) => {
         draft.query = next;
@@ -30,7 +30,7 @@ export function ScatterChartOptionsEditor(props: ScatterChartOptionsEditorProps)
     <OptionsEditorTabs
       tabs={{
         query: {
-          content: <TimeSeriesQueryEditor value={query} onChange={handleQueryChange} />,
+          content: <MultiQueryEditor value={query} onChange={handleQueryChange} />,
         },
         settings: {
           content: <ScatterChartOptionsEditorSettings {...props} />,

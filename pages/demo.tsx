@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { Box, Stack, Typography, useTheme } from '@mui/material';
-import { ChartsThemeProvider, EChartsTheme, generateChartsTheme, PersesChartsTheme } from '@perses-dev/components';
+import { ChartsProvider, EChartsTheme, generateChartsTheme, PersesChartsTheme } from '@perses-dev/components';
 import { Panel } from '../components';
 
 // app specific echarts option overrides
@@ -26,13 +26,13 @@ export default function Demo() {
     return generateChartsTheme(muiTheme, ECHARTS_THEME_OVERRIDES);
   }, [muiTheme]);
   return (
-    <ChartsThemeProvider chartsTheme={chartsTheme}>
+    <ChartsProvider chartsTheme={chartsTheme}>
       <Box sx={{ padding: 2 }}>
         <Typography variant="h2">Perses - Components Demo</Typography>
         <Stack direction="row" alignItems="center" gap={2}>
           <Panel width={600} height={400} />
         </Stack>
       </Box>
-    </ChartsThemeProvider>
+    </ChartsProvider>
   );
 }

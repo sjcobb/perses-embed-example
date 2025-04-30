@@ -6,8 +6,8 @@ import { JSONEditor } from '@perses-dev/components';
 import {
   OptionsEditorProps,
   OptionsEditorTabs,
-  TimeSeriesQueryEditor,
-  TimeSeriesQueryEditorProps,
+  // MultiQueryEditor,
+  // MultiQueryEditorProps,
 } from '@perses-dev/plugin-system';
 import { useUpdateSavedImage } from './save-image';
 
@@ -40,13 +40,13 @@ export function GenerateImageCanvasOptionsEditor(props: GenerateImageCanvasOptio
     );
   }
 
-  const handleQueryChange: TimeSeriesQueryEditorProps['onChange'] = (next) => {
-    onChange(
-      produce(value, (draft) => {
-        draft.query = next;
-      })
-    );
-  };
+  // const handleQueryChange: MultiQueryEditorProps['onChange'] = (next) => {
+  //   onChange(
+  //     produce(value, (draft) => {
+  //       draft.query = next;
+  //     })
+  //   );
+  // };
 
   return (
     <>
@@ -68,16 +68,16 @@ export function GenerateImageCanvasOptionsEditor(props: GenerateImageCanvasOptio
         </Button>
         <Typography>Note: Image must be reset to null before a new image prompt query will run</Typography>
       </Stack>
-      <OptionsEditorTabs
+      {/* <OptionsEditorTabs
         tabs={{
           query: {
-            content: <TimeSeriesQueryEditor value={query} onChange={handleQueryChange} />,
+            content: <MultiQueryEditor value={query} onChange={handleQueryChange} />,
           },
           json: {
             content: <JSONEditor {...props} />,
           },
         }}
-      />
+      /> */}
     </>
   );
 }

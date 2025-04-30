@@ -2,7 +2,7 @@ import React from 'react';
 import { QueryParamProvider } from 'use-query-params';
 import { NextAdapter } from 'next-query-params';
 import { DashboardResource, DurationString, TimeRangeValue } from '@perses-dev/core';
-import { DashboardProvider, DatasourceStoreProvider, TemplateVariableProvider } from '@perses-dev/dashboards';
+import { DashboardProvider, DatasourceStoreProvider, VariableProvider } from '@perses-dev/dashboards';
 import {
   PluginRegistry,
   TimeRangeProvider as PersesTimeRangeProvider,
@@ -46,9 +46,9 @@ export function PersesDashboardProvidersAlt({ dashboard, children }: PersesDashb
       <QueryParamProvider adapter={NextAdapter}>
         <DatasourceStoreProvider dashboardResource={dashboard} datasourceApi={datasourceApi}>
           <DashboardProvider initialState={{ dashboardResource: dashboard }}>
-            <TemplateVariableProvider initialVariableDefinitions={dashboard.spec.variables}>
+            <VariableProvider initialVariableDefinitions={dashboard.spec.variables}>
               <TimeRangeProvider dashboardDuration={dashboard.spec.duration}>{children}</TimeRangeProvider>
-            </TemplateVariableProvider>
+            </VariableProvider>
           </DashboardProvider>
         </DatasourceStoreProvider>
       </QueryParamProvider>
